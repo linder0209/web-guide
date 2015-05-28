@@ -1,0 +1,194 @@
+/**
+ * 处理一些样式的前缀
+ * see Bootstrap  'less/mixins/vendor-prefixes.less'
+**/
+html,
+body {
+  height: auto;
+  min-height: 100%;
+}
+html {
+  position: relative;
+}
+body {
+  padding-top: 50px;
+}
+.link {
+  color: #5697d0;
+}
+/**
+* 外边距
+**/
+.margin-top-md {
+  margin-top: 10px;
+}
+.margin-top-vl {
+  margin-top: 30px;
+}
+.margin-top-hg {
+  margin-top: 50px;
+}
+.margin-left-md {
+  margin-left: 10px;
+}
+.margin-left-lg {
+  margin-left: 20px;
+}
+.margin-bottom-sm {
+  margin-bottom: 5px;
+}
+/**
+ * 页面头部样式
+**/
+.docs-header.navbar-inverse {
+  background-color: #193c5a;
+  border-color: #0e2132;
+  background-image: -webkit-linear-gradient(top, #1f496e 0%, #193c5a 100%);
+  background-image: -o-linear-gradient(top, #1f496e 0%, #193c5a 100%);
+  background-image: linear-gradient(to bottom, #1f496e 0%, #193c5a 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1f496e', endColorstr='#ff193c5a', GradientType=0);
+}
+.docs-header.navbar-inverse .navbar-brand {
+  color: #e1edf7;
+}
+.docs-header.navbar-inverse .navbar-brand:hover,
+.docs-header.navbar-inverse .navbar-brand:focus {
+  color: #fff;
+}
+.docs-header.navbar-inverse .navbar-brand.active {
+  color: #fff;
+  font-weight: bold;
+  background-color: #183956;
+}
+.docs-header.navbar-inverse .navbar-nav > li > a {
+  color: #e1edf7;
+}
+.docs-header.navbar-inverse .navbar-nav > li > a:hover,
+.docs-header.navbar-inverse .navbar-nav > li > a:focus {
+  color: #fff;
+}
+.docs-header.navbar-inverse .navbar-nav > li.active {
+  font-weight: bold;
+}
+.docs-header.navbar-inverse .navbar-nav > li.active a,
+.docs-header.navbar-inverse .navbar-nav > li.active a:hover,
+.docs-header.navbar-inverse .navbar-nav > li.active a:focus {
+  background-color: #183956;
+}
+/*
+* 页面底部样式
+*/
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.footer-assist {
+  padding-top: 350px;
+}
+@media (min-width: 768px) {
+  .footer-assist {
+    padding-top: 301px;
+  }
+}
+@media (min-width: 992px) {
+  .footer-assist {
+    padding-top: 256px;
+  }
+}
+@media (min-width: 1200px) {
+  .footer-assist {
+    padding-top: 206px;
+  }
+}
+.footer-links {
+  background-color: #193c5a;
+  border-bottom: 1px solid #0e2132;
+  background-image: -webkit-linear-gradient(top, #1f496e 0%, #193c5a 100%);
+  background-image: -o-linear-gradient(top, #1f496e 0%, #193c5a 100%);
+  background-image: linear-gradient(to bottom, #1f496e 0%, #193c5a 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1f496e', endColorstr='#ff193c5a', GradientType=0);
+  padding: 20px 0;
+}
+.footer-copyright {
+  background-color: #ffffff;
+  color: #555555;
+  padding: 10px 0 0;
+}
+.links-item > li {
+  float: left;
+}
+.links-item > li:first-child {
+  margin-right: 20px;
+}
+.links-item-title {
+  color: #ffffff;
+  font-size: 17px;
+}
+.links-item-content {
+  color: #ffffff;
+}
+.links-item-content > a {
+  display: inline-block;
+  margin-right: 10px;
+  color: #ffffff;
+}
+.links-item-content > a:hover,
+.links-item-content > a:focus {
+  color: #ffffff;
+}
+/*
+* 后台页面底部
+*/
+.manage-footer {
+  position: absolute;
+  bottom: 0;
+  background-color: #245682;
+  border-bottom: 1px solid #193c5a;
+  background-image: -webkit-linear-gradient(top, #2a6496 0%, #193c5a 100%);
+  background-image: -o-linear-gradient(top, #2a6496 0%, #193c5a 100%);
+  background-image: linear-gradient(to bottom, #2a6496 0%, #193c5a 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff2a6496', endColorstr='#ff193c5a', GradientType=0);
+  color: #b9d4ec;
+  padding: 5px 20px;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .manage-footer {
+    width: 75%;
+    margin-left: 25%;
+  }
+}
+@media (min-width: 992px) {
+  .manage-footer {
+    width: 83.33333333%;
+    margin-left: 16.66666667%;
+  }
+}
+.manage-footer-assist {
+  padding-top: 50px;
+}
+.masthead-button-links {
+  margin-top: 30px;
+}
+.masthead-button-links a + a {
+  margin-left: 20px;
+}
+.docs-featurette {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
+  text-align: center;
+  background-color: #FFF;
+  border-bottom: 1px solid #E5E5E5;
+}
+.docs-half-rule {
+  width: 150px;
+  margin: 30px auto;
+}

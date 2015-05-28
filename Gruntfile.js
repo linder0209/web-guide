@@ -10,15 +10,22 @@
 module.exports = function (grunt) {
 
   // Load grunt tasks automatically
+  // 自动加载grunt tasks
+  // https://github.com/sindresorhus/load-grunt-tasks
   require('load-grunt-tasks')(grunt);
 
   // Time how long tasks take. Can help when optimizing build times
+  // 统计显示各任务执行的时间
+  // https://github.com/sindresorhus/time-grunt
   require('time-grunt')(grunt);
 
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
-    dist: 'dist'
+    dist: 'dist',
+    server: 'server',
+    publish: 'publish',
+    webapp: 'dist/webapp'
   };
 
   // Define the configuration for all the tasks
@@ -37,7 +44,7 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
         tasks: ['newer:jshint:all'],
         options: {
-          livereload: '<%= connect.options.livereload %>'
+          livereload: true
         }
       },
       jsTest: {
@@ -53,63 +60,50 @@ module.exports = function (grunt) {
       },
       livereload: {
         options: {
-          livereload: '<%= connect.options.livereload %>'
+          livereload: '<%= express.options.livereload %>'
         },
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
+      },
+      express: {
+        files: [ 'app.js', '<%= yeoman.server %>/**/*.js' ],
+        tasks: [ 'express:dev' ],
+        options: {
+          spawn: false // for grunt-contrib-watch v0.5.0+, "nospawn: true" for lower versions. Without this option specified express won't be reloaded
+        }
+      },
+      less: {
+        files: ['<%= yeoman.app %>/less/{,*/}*.less'],
+        tasks: ['less']
       }
     },
 
-    // The actual grunt server settings
-    connect: {
+    // express 启动任务
+    express: {
       options: {
         port: 9001,
-        // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
         livereload: 35729
       },
-      livereload: {
+      dev: {
         options: {
           open: true,
-          middleware: function (connect) {
-            return [
-              connect.static('.tmp'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect().use(
-                '/app/styles',
-                connect.static('./app/styles')
-              ),
-              connect.static(appConfig.app)
-            ];
-          }
+          script: './bin/web-guide.js'
         }
+      }
+    },
+
+    // 把less 转换为 css 任务
+    less: {
+      options: {
+        paths: ['<%= yeoman.app %>/']
       },
-      test: {
-        options: {
-          port: 9001,
-          middleware: function (connect) {
-            return [
-              connect.static('.tmp'),
-              connect.static('test'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect.static(appConfig.app)
-            ];
-          }
-        }
-      },
-      dist: {
-        options: {
-          open: true,
-          base: '<%= yeoman.dist %>'
+      publish: {
+        files: {
+          '<%= yeoman.app %>/styles/guide-docs.css': '<%= yeoman.app %>/less/guide-docs.less',
+          '<%= yeoman.app %>/styles/guide-docs-manager.css': '<%= yeoman.app %>/less/guide-docs-manager.less'
         }
       }
     },
@@ -118,12 +112,14 @@ module.exports = function (grunt) {
     jshint: {
       options: {
         jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
+        reporter: require('jshint-stylish'),//利用插件jshint-stylish输出分析结果
+        reporterOutput: 'jshint.log'//设置分析结果输出到指定文件，如果不设置，则输出到控制台
       },
       all: {
         src: [
           'Gruntfile.js',
-          '<%= yeoman.app %>/scripts/{,*/}*.js'
+          '<%= yeoman.app %>/scripts/{,*/}*.js',
+          '<%= yeoman.server %>/{,*/}*.js'
         ]
       },
       test: {
@@ -142,7 +138,8 @@ module.exports = function (grunt) {
           src: [
             '.tmp',
             '<%= yeoman.dist %>/{,*/}*',
-            '!<%= yeoman.dist %>/.git{,*/}*'
+            '!<%= yeoman.dist %>/.git{,*/}*',
+            '!<%= yeoman.dist %>/node_modules/**'
           ]
         }]
       },
@@ -150,9 +147,11 @@ module.exports = function (grunt) {
     },
 
     // Add vendor prefixed styles
+    // 该任务用来分析css并为css3加上各浏览器前缀
     autoprefixer: {
       options: {
-        browsers: ['last 1 version']
+        //cascade: true,// 设置层叠显示分格
+        browsers: ['last 1 version']// 指定浏览器版本，该设置表示浏览器最新版本，详见 https://github.com/ai/autoprefixer#browsers
       },
       server: {
         options: {
@@ -176,7 +175,14 @@ module.exports = function (grunt) {
     },
 
     // Automatically inject Bower components into the app
+    // 由于项目中不同的文件加载的bower 组件不一样，故有些html文件去掉了bower install
     wiredep: {
+      options: {
+        dependencies: true,
+        devDependencies: false,
+        exclude: [],
+        fileTypes: {}
+      },
       app: {
         src: ['<%= yeoman.app %>/index.html'],
         ignorePath:  /\.\.\//
@@ -200,6 +206,7 @@ module.exports = function (grunt) {
     },
 
     // Renames files for browser caching purposes
+    // 该任务用来重新命名文件
     filerev: {
       dist: {
         src: [
@@ -214,6 +221,16 @@ module.exports = function (grunt) {
     // Reads HTML for usemin blocks to enable smart builds that automatically
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
+    // 注意不同的文件应该命名不同的编译名称，比如两个html文件中不能出现相同的build:js 名称
+    // 该task 会生成 concat、uglify、cssmin 配置项，随后利用这几个命令来处理转换文件，处理html中类似以下定义的块
+    /**
+     * <!-- build:js js/app.js -->
+     <script src="js/app.js"></script>
+     <script src="js/controllers/thing-controller.js"></script>
+     <script src="js/models/thing-model.js"></script>
+     <script src="js/views/thing-view.js"></script>
+     <!-- endbuild -->
+     **/
     useminPrepare: {
       html: '<%= yeoman.app %>/index.html',
       options: {
@@ -294,10 +311,10 @@ module.exports = function (grunt) {
     htmlmin: {
       dist: {
         options: {
-          collapseWhitespace: true,
+          collapseWhitespace: true,// 合并多余的空格
           conservativeCollapse: true,
-          collapseBooleanAttributes: true,
-          removeCommentsFromCDATA: true,
+          collapseBooleanAttributes: true,// Collapse boolean attributes. <input disabled="disabled"> => <input disabled>
+          removeCommentsFromCDATA: true,//删除script 和style中的注解
           removeOptionalTags: true
         },
         files: [{
@@ -392,15 +409,16 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
-      return grunt.task.run(['build', 'connect:dist:keepalive']);
+      return grunt.task.run(['build']);
     }
 
     grunt.task.run([
-      'clean:server',
+      'clean:server', // clean .tmp
       'wiredep',
+      'less:publish',//把less转换为css
       'concurrent:server',
-      'autoprefixer:server',
-      'connect:livereload',
+      'autoprefixer',// 分析css 并给css3加上浏览器前缀
+      'express:dev',// 启动 express
       'watch'
     ]);
   });
@@ -415,18 +433,18 @@ module.exports = function (grunt) {
     'wiredep',
     'concurrent:test',
     'autoprefixer',
-    'connect:test',
     'karma'
   ]);
 
   grunt.registerTask('build', [
     'clean:dist',
     'wiredep',
-    'useminPrepare',
+    'less:publish',//把less转换为css
+    'useminPrepare',//合并压缩文件
     'concurrent:dist',
     'autoprefixer',
     'concat',
-    'ngAnnotate',
+    'ngAnnotate',// 处理angular 在 .tmp下
     'copy:dist',
     'cdnify',
     'cssmin',

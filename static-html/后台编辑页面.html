@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Web前端指南</title>
+    <meta name="description" content="">
+    <!-- 兼容性问题，使用浏览器最高版本来渲染-->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../app/bower_components/bootstrap/dist/css/bootstrap.css">
+
+    <link rel="stylesheet" href="../app/styles/guide-docs-manager.css">
+</head>
+<body>
+
+<!-- Fixed navbar -->
+<header class="navbar navbar-inverse navbar-fixed-top docs-header" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand active" href="/">Web前端指南</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class=""><a href="/reference" target="_blank">代码规范</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/linder/manage#/accountInfo" ng-href="/linder/manage#/accountInfo">学习资源</a></li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</header>
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="">代码规范</a></li>
+                <li><a href="">性能优化</a></li>
+                <li><a href="">组件库</a></li>
+            </ul>
+        </div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 docs-manage-main">
+            <form method="post">
+                <div class="form-group">
+                    <textarea id="content" name="content" class="sr-only"></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+
+<div class="manage-footer-assist"></div>
+<footer class="manage-footer clearfix">
+    <span class="pull-left">Web 前端指南</span>
+    <span class="pull-right">Copyright &copy; 2015 Powered by Linder 版权所有</span>
+</footer>
+
+<script src="../app/bower_components/jquery/dist/jquery.js"></script>
+<script src="../app/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+</body>
+</html>
