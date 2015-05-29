@@ -3,9 +3,13 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/', function (req, res) {
-  res.render('docs', { title: 'Web Guild 首页' });
-});
+var webGuide = {
+  index: function (req, res) {
+    res.render('web-guide', { title: 'Web Guild 首页' });
+  }
+};
+
+router.get('/', webGuide.index);
 
 /**
  * 首页路由

@@ -19,7 +19,7 @@
     "angular-route": "^1.4.0",
     "angular-sanitize": "^1.4.0",
     "angular-touch": "^1.4.0",
-    "tinymce": "~4.1.9",
+    "tinymce": "~4.1.10",
     "angular-ui-tinymce": "~0.0.5"
   },
   "devDependencies": {

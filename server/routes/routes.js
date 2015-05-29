@@ -1,8 +1,8 @@
 'use strict';
 
 var examples = require('./examples/examples');
-var docs = require('./docs');
-var docsManage = require('./docsManage');
+var webGuide = require('./web-guide');
+var webGuideManage = require('./web-guide-manage');
 
 /**
  * 页面相关路由抽象实现，即访问页面的url
@@ -17,7 +17,7 @@ var docsManage = require('./docsManage');
  * */
 
 module.exports = function (app) {
-  app.use('/', docs);
-  app.use('/manage', docsManage);
+  app.use('/', webGuide);
+  app.use('/manage', webGuideManage);
   app.use('/examples', examples);
 };

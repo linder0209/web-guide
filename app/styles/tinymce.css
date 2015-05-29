@@ -1,0 +1,131 @@
+body {
+  font-size: 14px;
+}
+td,
+th {
+  font-size: 14px;
+}
+li {
+  line-height: 2.5em;
+}
+body > p {
+  line-height: 2em;
+  text-indent: 2em;
+}
+pre {
+  margin-left: 4em;
+}
+.mce-content-body {
+  counter-reset: outline1;
+}
+.mce-content-body > h1 {
+  counter-reset: outline2;
+}
+.mce-content-body > h1:before {
+  content: counter(outline1, decimal) ". ";
+  counter-increment: outline1;
+  font-weight: bold;
+}
+.mce-content-body > h1 ~ h2 {
+  counter-reset: outline3;
+}
+.mce-content-body > h1 ~ h2:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) ". ";
+  counter-increment: outline2;
+  font-weight: bold;
+}
+.mce-content-body > h1 ~ h2 ~ h3 {
+  counter-reset: outline4;
+}
+.mce-content-body > h1 ~ h2 ~ h3:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) "." counter(outline3, decimal) ". ";
+  counter-increment: outline3;
+  font-weight: bold;
+}
+.mce-content-body > h1 ~ h2 ~ h3 ~ h4 {
+  counter-reset: outline5;
+}
+.mce-content-body > h1 ~ h2 ~ h3 ~ h4:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) "." counter(outline3, decimal) "." counter(outline4, decimal) ". ";
+  counter-increment: outline4;
+  font-weight: bold;
+}
+.mce-content-body > h1 ~ h2 ~ h3 ~ h4 ~ h5 {
+  counter-reset: outline6;
+}
+.mce-content-body > h1 ~ h2 ~ h3 ~ h4 ~ h5:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) "." counter(outline3, decimal) "." counter(outline4, decimal) "." counter(outline5, decimal) ". ";
+  counter-increment: outline5;
+  font-weight: bold;
+}
+.mce-content-body > h1 ~ h2 ~ h3 ~ h4 ~ h5 ~ h6:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) "." counter(outline3, decimal) "." counter(outline4, decimal) "." counter(outline5, decimal) "." counter(outline6, decimal) ". ";
+  counter-increment: outline6;
+  font-weight: bold;
+}
+.mce-content-body > h2 {
+  counter-reset: outline2;
+}
+.mce-content-body > h2:before {
+  content: counter(outline1, decimal) ". ";
+  counter-increment: outline1;
+  font-weight: bold;
+}
+.mce-content-body > h2 ~ h3 {
+  counter-reset: outline3;
+}
+.mce-content-body > h2 ~ h3:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) ". ";
+  counter-increment: outline2;
+  font-weight: bold;
+}
+.mce-content-body > h2 ~ h3 ~ h4 {
+  counter-reset: outline4;
+}
+.mce-content-body > h2 ~ h3 ~ h4:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) "." counter(outline3, decimal) ". ";
+  counter-increment: outline3;
+  font-weight: bold;
+}
+.mce-content-body > h2 ~ h3 ~ h4 ~ h5 {
+  counter-reset: outline5;
+}
+.mce-content-body > h2 ~ h3 ~ h4 ~ h5:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) "." counter(outline3, decimal) "." counter(outline4, decimal) ". ";
+  counter-increment: outline4;
+  font-weight: bold;
+}
+.mce-content-body > h2 ~ h3 ~ h4 ~ h5 ~ h6:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) "." counter(outline3, decimal) "." counter(outline4, decimal) "." counter(outline5, decimal) ". ";
+  counter-increment: outline5;
+  font-weight: bold;
+}
+.mce-content-body > h3 {
+  counter-reset: outline2;
+}
+.mce-content-body > h3:before {
+  content: counter(outline1, decimal) ". ";
+  counter-increment: outline1;
+  font-weight: bold;
+}
+.mce-content-body > h3 ~ h4 {
+  counter-reset: outline3;
+}
+.mce-content-body > h3 ~ h4:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) ". ";
+  counter-increment: outline2;
+  font-weight: bold;
+}
+.mce-content-body > h3 ~ h4 ~ h5 {
+  counter-reset: outline4;
+}
+.mce-content-body > h3 ~ h4 ~ h5:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) "." counter(outline3, decimal) ". ";
+  counter-increment: outline3;
+  font-weight: bold;
+}
+.mce-content-body > h3 ~ h4 ~ h5 ~ h6:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) "." counter(outline3, decimal) "." counter(outline4, decimal) ". ";
+  counter-increment: outline4;
+  font-weight: bold;
+}

@@ -77,7 +77,7 @@ module.exports = function (grunt) {
       },
       less: {
         files: ['<%= yeoman.app %>/less/{,*/}*.less'],
-        tasks: ['less']
+        tasks: ['less:publish']
       }
     },
 
@@ -102,8 +102,9 @@ module.exports = function (grunt) {
       },
       publish: {
         files: {
-          '<%= yeoman.app %>/styles/guide-docs.css': '<%= yeoman.app %>/less/guide-docs.less',
-          '<%= yeoman.app %>/styles/guide-docs-manager.css': '<%= yeoman.app %>/less/guide-docs-manager.less'
+          '<%= yeoman.app %>/styles/guide.css': '<%= yeoman.app %>/less/guide.less',
+          '<%= yeoman.app %>/styles/guide-manager.css': '<%= yeoman.app %>/less/guide-manager.less',
+          '<%= yeoman.app %>/styles/tinymce.css': '<%= yeoman.app %>/less/tinymce.less'
         }
       }
     },

@@ -40,7 +40,7 @@ body {
 /**
  * 页面头部样式
 **/
-.docs-header.navbar-inverse {
+.guide-header.navbar-inverse {
   background-color: #193c5a;
   border-color: #0e2132;
   background-image: -webkit-linear-gradient(top, #1f496e 0%, #193c5a 100%);
@@ -49,31 +49,31 @@ body {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1f496e', endColorstr='#ff193c5a', GradientType=0);
 }
-.docs-header.navbar-inverse .navbar-brand {
+.guide-header.navbar-inverse .navbar-brand {
   color: #e1edf7;
 }
-.docs-header.navbar-inverse .navbar-brand:hover,
-.docs-header.navbar-inverse .navbar-brand:focus {
+.guide-header.navbar-inverse .navbar-brand:hover,
+.guide-header.navbar-inverse .navbar-brand:focus {
   color: #fff;
 }
-.docs-header.navbar-inverse .navbar-brand.active {
+.guide-header.navbar-inverse .navbar-brand.active {
   color: #fff;
   font-weight: bold;
   background-color: #183956;
 }
-.docs-header.navbar-inverse .navbar-nav > li > a {
+.guide-header.navbar-inverse .navbar-nav > li > a {
   color: #e1edf7;
 }
-.docs-header.navbar-inverse .navbar-nav > li > a:hover,
-.docs-header.navbar-inverse .navbar-nav > li > a:focus {
+.guide-header.navbar-inverse .navbar-nav > li > a:hover,
+.guide-header.navbar-inverse .navbar-nav > li > a:focus {
   color: #fff;
 }
-.docs-header.navbar-inverse .navbar-nav > li.active {
+.guide-header.navbar-inverse .navbar-nav > li.active {
   font-weight: bold;
 }
-.docs-header.navbar-inverse .navbar-nav > li.active a,
-.docs-header.navbar-inverse .navbar-nav > li.active a:hover,
-.docs-header.navbar-inverse .navbar-nav > li.active a:focus {
+.guide-header.navbar-inverse .navbar-nav > li.active a,
+.guide-header.navbar-inverse .navbar-nav > li.active a:hover,
+.guide-header.navbar-inverse .navbar-nav > li.active a:focus {
   background-color: #183956;
 }
 /*
@@ -158,84 +158,37 @@ body {
 }
 @media (min-width: 768px) {
   .manage-footer {
-    width: 75%;
-    margin-left: 25%;
+    width: 83.33333333%;
+    margin-left: 16.66666667%;
   }
 }
 @media (min-width: 992px) {
   .manage-footer {
-    width: 83.33333333%;
-    margin-left: 16.66666667%;
+    width: 91.66666667%;
+    margin-left: 8.33333%;
   }
 }
 .manage-footer-assist {
   padding-top: 50px;
 }
-/*
- * Sidebar
- */
-/* Hide for mobile, show later */
-.sidebar {
-  display: none;
+.masthead-button-links {
+  margin-top: 30px;
 }
-@media (min-width: 768px) {
-  .sidebar {
-    position: fixed;
-    top: 51px;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    display: block;
-    padding: 20px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    /* Scrollable contents if viewport is shorter than content. */
-    background-color: #ffffff;
-    border-right: 1px solid #92bce0;
-  }
+.masthead-button-links a + a {
+  margin-left: 20px;
 }
-/* Sidebar navigation */
-.nav-sidebar {
-  margin-right: -21px;
-  /* 20px padding + 1px border */
-  margin-bottom: 20px;
-  margin-left: -20px;
+.guide-featurette {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
+  text-align: center;
+  background-color: #FFF;
+  border-bottom: 1px solid #E5E5E5;
 }
-.nav-sidebar > li > a {
-  padding-right: 20px;
-  padding-left: 20px;
-  color: #428bca;
-  font-weight: bold;
-}
-.nav-sidebar > li.active > a {
-  color: #ffffff;
-  background-color: #428bca;
-}
-.nav-sidebar > li.active > a:focus {
-  color: #ffffff;
-  background-color: #428bca;
-}
-.nav-sidebar > li > a:hover {
-  color: #ffffff;
-  background-color: #5697d0;
-}
-/** ���������� ��ʽ**/
-/**
- * ���� TinyMCE ��ͻ
-**/
-div.mce-fullscreen {
-  z-index: 2000;
-}
-/**
- * 以下是一些通用的Angular 动画 css
-**/
-.animate-show {
-  -webkit-transition: all linear 0.5s;
-  -o-transition: all linear 0.5s;
-  transition: all linear 0.5s;
-  opacity: 1;
-}
-.animate-show.ng-hide {
-  line-height: 0;
-  opacity: 0;
+.guide-half-rule {
+  width: 150px;
+  margin: 30px auto;
 }
