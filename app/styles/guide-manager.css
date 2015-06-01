@@ -12,6 +12,7 @@ html {
 }
 body {
   padding-top: 50px;
+  font-family: tahoma, arial, "宋体", sans-serif;
 }
 .link {
   color: #5697d0;
@@ -169,7 +170,7 @@ body {
   }
 }
 .manage-footer-assist {
-  padding-top: 50px;
+  padding-top: 30px;
 }
 /*
  * Sidebar

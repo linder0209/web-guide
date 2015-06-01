@@ -14,7 +14,7 @@
     <!-- endbuild -->
 
 </head>
-<body ng-app="webGuideManageApp" start-ajax-loading="true">
+<body ng-app="webGuideApp">
 <% include ../views/common/manage-header.html %>
 <div class="container-fluid" ng-controller="WebGuideManageCtrl">
 
@@ -31,14 +31,7 @@
         </div>
 
         <div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 guide-manage-main">
-            <div class="form-group">
-                <textarea id="content" name="content" ui-tinymce="tinymceOptions"  ng-model="guide.content" class="sr-only"></textarea>
-            </div>
-            <div class="row">
-                <div class="col-sm-2 col-sm-offset-5">
-                    <button class=" btn btn-primary btn-block" type="button" ng-click="save()">保存</button>
-                </div>
-            </div>
+           <textarea id="content" name="content" ui-tinymce="tinymceOptions"  ng-model="guide.content" class="sr-only"></textarea>
         </div>
     </div>
     <!-- /.row -->

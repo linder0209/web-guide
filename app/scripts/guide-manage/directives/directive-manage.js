@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('hopefutureBlogApp')
+angular.module('webGuideApp')
   .directive('linkActive', ['$location', function ($location) {
     return {
       restict: 'A',

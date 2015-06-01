@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('webGuideManageApp')
+angular.module('webGuideApp')
   .factory('webGuideManageService', ['guideHttpService', function (guideHttpService) {
     return {
       saveGuide: function (data, success) {
         guideHttpService.post('', data).then(success);
       },
       getGuide: function (type, success) {
-        guideHttpService.get('' + type).then(success);
+        guideHttpService.get('manage/' + type).then(success);
       }
     };
   }]);

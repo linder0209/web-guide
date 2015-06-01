@@ -7,20 +7,20 @@
  * @createdDate 2015-5-29
  * */
 
-angular.module('webGuideManageApp').controller('WebGuideManageCtrl', function ($scope, $location, webGuideManageService) {
+angular.module('webGuideApp').controller('WebGuideManageCtrl', function ($scope, $location, webGuideManageService) {
   //先销毁tinyMCE实例
   if (tinymce && tinymce.get('content')) {
     tinymce.get('content').destroy();
   }
 
   $scope.guide = {
-    type: 'css',
+    type: 'html',
     content: ''
   };
 
   //jshint -W106
   $scope.tinymceOptions = {
-    height: 400,
+    height: document.documentElement.clientHeight - 198,
     menubar: false, //Disable all menu
     content_css: '/styles/tinymce.css',
     plugins: [
@@ -44,7 +44,7 @@ angular.module('webGuideManageApp').controller('WebGuideManageCtrl', function ($
     webGuideManageService.getGuide(type, function (data) {
       if (data.success === true) {
         $(event.currentTarget).parent().addClass('active').siblings().removeClass('active');
-        $scope.guide.type = data.type;
+        $scope.guide.type = type;
         $scope.guide.content = data.content;
       }
     });
@@ -53,11 +53,16 @@ angular.module('webGuideManageApp').controller('WebGuideManageCtrl', function ($
   /**
    * 保存
    */
-  $scope.save = function () {
-    webGuideManageService.save($scope.guide, function (data) {
+  $scope.saveGuide = function () {
+    webGuideManageService.saveGuide($scope.guide, function (data) {
       if (data.success === true) {
-        $scope.guide.content = '';
+
       }
     });
   };
+
+  //两分钟保存一次
+  setInterval(function () {
+    $scope.saveGuide();
+  }, 60000);
 });

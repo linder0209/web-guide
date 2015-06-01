@@ -12,6 +12,7 @@ html {
 }
 body {
   padding-top: 50px;
+  font-family: tahoma, arial, "宋体", sans-serif;
 }
 .link {
   color: #5697d0;
@@ -169,7 +170,7 @@ body {
   }
 }
 .manage-footer-assist {
-  padding-top: 50px;
+  padding-top: 30px;
 }
 .masthead-button-links {
   margin-top: 30px;
@@ -191,4 +192,340 @@ body {
 .guide-half-rule {
   width: 150px;
   margin: 30px auto;
+}
+.guide-content {
+  margin-top: 30px;
+}
+.guide-content p,
+.guide-content li,
+.guide-content table {
+  font-size: 17px;
+  line-height: 2em;
+}
+.guide-content > p {
+  text-indent: 2em;
+}
+.guide-content table {
+  margin-bottom: 1em;
+}
+.guide-content table th {
+  text-align: center;
+}
+.guide-content table th,
+.guide-content table td {
+  padding: 5px 10px;
+  border-bottom: 1px solid #428bca;
+  border-right: 1px solid #428bca;
+}
+.guide-content table tr:first-child th,
+.guide-content table tr:first-child td {
+  border-top: 1px solid #428bca;
+}
+.guide-content table th:first-child,
+.guide-content table td:first-child {
+  border-left: 1px solid #428bca;
+}
+.guide-content h1,
+.guide-content h2,
+.guide-content h3,
+.guide-content h4 {
+  margin-bottom: 1em;
+}
+.guide-content-outline {
+  counter-reset: outline1;
+}
+.guide-content-outline > h1 {
+  counter-reset: outline2;
+}
+.guide-content-outline > h1:before {
+  content: counter(outline1, decimal) ". ";
+  counter-increment: outline1;
+  font-weight: bold;
+}
+.guide-content-outline > h1 ~ h2 {
+  counter-reset: outline3;
+}
+.guide-content-outline > h1 ~ h2:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) ". ";
+  counter-increment: outline2;
+  font-weight: bold;
+}
+.guide-content-outline > h1 ~ h2 ~ h3 {
+  counter-reset: outline4;
+}
+.guide-content-outline > h1 ~ h2 ~ h3:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) "." counter(outline3, decimal) ". ";
+  counter-increment: outline3;
+  font-weight: bold;
+}
+.guide-content-outline > h1 ~ h2 ~ h3 ~ h4 {
+  counter-reset: outline5;
+}
+.guide-content-outline > h1 ~ h2 ~ h3 ~ h4:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) "." counter(outline3, decimal) "." counter(outline4, decimal) ". ";
+  counter-increment: outline4;
+  font-weight: bold;
+}
+.guide-content-outline > h1 ~ h2 ~ h3 ~ h4 ~ h5 {
+  counter-reset: outline6;
+}
+.guide-content-outline > h1 ~ h2 ~ h3 ~ h4 ~ h5:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) "." counter(outline3, decimal) "." counter(outline4, decimal) "." counter(outline5, decimal) ". ";
+  counter-increment: outline5;
+  font-weight: bold;
+}
+.guide-content-outline > h1 ~ h2 ~ h3 ~ h4 ~ h5 ~ h6:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) "." counter(outline3, decimal) "." counter(outline4, decimal) "." counter(outline5, decimal) "." counter(outline6, decimal) ". ";
+  counter-increment: outline6;
+  font-weight: bold;
+}
+.guide-content-outline > h2 {
+  counter-reset: outline2;
+}
+.guide-content-outline > h2:before {
+  content: counter(outline1, decimal) ". ";
+  counter-increment: outline1;
+  font-weight: bold;
+}
+.guide-content-outline > h2 ~ h3 {
+  counter-reset: outline3;
+}
+.guide-content-outline > h2 ~ h3:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) ". ";
+  counter-increment: outline2;
+  font-weight: bold;
+}
+.guide-content-outline > h2 ~ h3 ~ h4 {
+  counter-reset: outline4;
+}
+.guide-content-outline > h2 ~ h3 ~ h4:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) "." counter(outline3, decimal) ". ";
+  counter-increment: outline3;
+  font-weight: bold;
+}
+.guide-content-outline > h2 ~ h3 ~ h4 ~ h5 {
+  counter-reset: outline5;
+}
+.guide-content-outline > h2 ~ h3 ~ h4 ~ h5:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) "." counter(outline3, decimal) "." counter(outline4, decimal) ". ";
+  counter-increment: outline4;
+  font-weight: bold;
+}
+.guide-content-outline > h2 ~ h3 ~ h4 ~ h5 ~ h6:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) "." counter(outline3, decimal) "." counter(outline4, decimal) "." counter(outline5, decimal) ". ";
+  counter-increment: outline5;
+  font-weight: bold;
+}
+.guide-content-outline > h3 {
+  counter-reset: outline2;
+}
+.guide-content-outline > h3:before {
+  content: counter(outline1, decimal) ". ";
+  counter-increment: outline1;
+  font-weight: bold;
+}
+.guide-content-outline > h3 ~ h4 {
+  counter-reset: outline3;
+}
+.guide-content-outline > h3 ~ h4:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) ". ";
+  counter-increment: outline2;
+  font-weight: bold;
+}
+.guide-content-outline > h3 ~ h4 ~ h5 {
+  counter-reset: outline4;
+}
+.guide-content-outline > h3 ~ h4 ~ h5:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) "." counter(outline3, decimal) ". ";
+  counter-increment: outline3;
+  font-weight: bold;
+}
+.guide-content-outline > h3 ~ h4 ~ h5 ~ h6:before {
+  content: counter(outline1, decimal) "." counter(outline2, decimal) "." counter(outline3, decimal) "." counter(outline4, decimal) ". ";
+  counter-increment: outline4;
+  font-weight: bold;
+}
+.guide-catalogue-panel {
+  position: fixed;
+  right: 0;
+  top: 70px;
+  z-index: 10;
+  padding-right: 10px;
+  display: none;
+}
+.guide-catalogue-panel .guide-catalogue-header {
+  padding: 5px 25px;
+}
+.guide-catalogue-panel .guide-catalogue-header .glyphicon {
+  font-size: 30px;
+  cursor: pointer;
+}
+.guide-catalogue-panel .guide-catalogue-header .glyphicon:hover {
+  color: #1a1a1a;
+}
+@media (min-width: 768px) {
+  .guide-catalogue-panel {
+    display: block;
+    width: 41.6667%;
+  }
+}
+@media (min-width: 992px) {
+  .guide-catalogue-panel {
+    width: 33.3333%;
+  }
+}
+@media (min-width: 1200px) {
+  .guide-catalogue-panel {
+    width: 25%;
+  }
+}
+.guide-catalogue {
+  height: 422px;
+  overflow: hidden;
+  position: relative;
+}
+.guide-catalogue .guide-catalogue-arrow {
+  position: absolute;
+  top: 40%;
+  right: 10px;
+  border: 1px solid;
+  border-radius: 8px;
+}
+.guide-catalogue .guide-catalogue-arrow .disabled {
+  cursor: default;
+}
+.guide-catalogue .guide-catalogue-arrow .disabled span {
+  color: #aaa;
+}
+.guide-catalogue .guide-catalogue-arrow .up {
+  border-bottom: 1px solid;
+  padding: 5px 5px 2px 6px;
+  cursor: pointer;
+}
+.guide-catalogue .guide-catalogue-arrow .down {
+  padding: 5px 5px 2px;
+  cursor: pointer;
+}
+.guide-catalogue .nav {
+  margin: 0 30px 0 0;
+  position: relative;
+}
+.guide-catalogue .nav > li {
+  line-height: 30px;
+}
+.guide-catalogue .nav > li > a {
+  display: block;
+  padding: 0 0 0 20px;
+  color: #245682;
+  font-weight: bold;
+}
+.guide-catalogue .nav > li > a:hover,
+.guide-catalogue .nav > li > a:focus {
+  padding-left: 19px;
+  color: #193c5a;
+  background-color: transparent;
+  border-left: 1px solid #193c5a;
+}
+.guide-catalogue .nav .active > a,
+.guide-catalogue .nav .active:hover > a,
+.guide-catalogue .nav .active:focus > a {
+  padding-left: 18px;
+  font-weight: 700;
+  color: #193c5a;
+  background-color: transparent;
+  border-left: 2px solid #193c5a;
+}
+.guide-catalogue .nav .nav {
+  display: none;
+  padding-left: 1.5em;
+}
+.guide-catalogue .nav > .active > ul {
+  display: block;
+}
+/*Ŀ¼��*/
+.guide-catalogue .nav {
+  counter-reset: catalogue1;
+}
+.guide-catalogue .nav > li > a:before {
+  content: counter(catalogue1, decimal) ". ";
+  counter-increment: catalogue1;
+  font-weight: bold;
+}
+.guide-catalogue .nav .nav {
+  counter-reset: catalogue2;
+}
+.guide-catalogue .nav .nav > li > a:before {
+  content: counter(catalogue1, decimal) "." counter(catalogue2, decimal) ". ";
+  counter-increment: catalogue2;
+}
+.guide-catalogue .nav .nav .nav {
+  counter-reset: catalogue3;
+}
+.guide-catalogue .nav .nav .nav > li > a:before {
+  content: counter(catalogue1, decimal) "." counter(catalogue2, decimal) "." counter(catalogue3, decimal) ". ";
+  counter-increment: catalogue3;
+}
+.guide-catalogue .nav .nav .nav .nav {
+  counter-reset: catalogue4;
+}
+.guide-catalogue .nav .nav .nav .nav > li > a:before {
+  content: counter(catalogue1, decimal) "." counter(catalogue2, decimal) "." counter(catalogue3, decimal) "." counter(catalogue4, decimal) ". ";
+  counter-increment: catalogue4;
+}
+.guide-catalogue .nav .nav .nav .nav .nav {
+  counter-reset: catalogue5;
+}
+.guide-catalogue .nav .nav .nav .nav .nav > li > a:before {
+  content: counter(catalogue1, decimal) "." counter(catalogue2, decimal) "." counter(catalogue3, decimal) "." counter(catalogue4, decimal) "." counter(catalogue5, decimal) ". ";
+  counter-increment: catalogue5;
+}
+.guide-catalogue .nav .nav .nav .nav .nav .nav {
+  counter-reset: catalogue6;
+}
+.guide-catalogue .nav .nav .nav .nav .nav .nav > li > a:before {
+  content: counter(catalogue1, decimal) "." counter(catalogue2, decimal) "." counter(catalogue3, decimal) "." counter(catalogue4, decimal) "." counter(catalogue5, decimal) "." counter(catalogue6, decimal) ". ";
+  counter-increment: catalogue6;
+}
+a.back-to-top {
+  text-indent: -999em;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  overflow: hidden;
+  font-size: 18px;
+  padding: 10px 18px;
+  display: none;
+}
+a.back-to-top:after,
+a.back-to-top:before {
+  font-family: "FontAwesome";
+  content: "\f062";
+  text-indent: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  line-height: 2.5;
+  -webkit-transition: all ease 0.238s;
+  -o-transition: all ease 0.238s;
+  transition: all ease 0.238s;
+}
+a.back-to-top:before {
+  -webkit-transform: translateY(3em);
+  -moz-transform: translateY(3em);
+  -o-transform: translateY(3em);
+  transform: translateY(3em);
+}
+a.back-to-top:hover:after {
+  -webkit-transform: translateY(-3em);
+  -moz-transform: translateY(-3em);
+  -o-transform: translateY(-3em);
+  transform: translateY(-3em);
+}
+a.back-to-top:hover:before {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
 }

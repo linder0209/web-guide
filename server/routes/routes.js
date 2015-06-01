@@ -17,7 +17,7 @@ var webGuideManage = require('./web-guide-manage');
  * */
 
 module.exports = function (app) {
-  app.use('/', webGuide);
+  app.use('/guide', webGuide);
   app.use('/manage', webGuideManage);
   app.use('/examples', examples);
 };

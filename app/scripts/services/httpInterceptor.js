@@ -5,7 +5,7 @@ var requestsNum = 0;
  * register the interceptor as a service
  * 给 http 请求注册一个拦截器
  */
-angular.module('webGuideManageApp')
+angular.module('webGuideApp')
   .factory('guideHttpInterceptor', ['$q', function ($q) {
     return {
       // optional method
