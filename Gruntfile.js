@@ -388,9 +388,9 @@ module.exports = function (grunt) {
       docs: {
         files: [{
           expand: true,
-          cwd: '<%= yeoman.docs %>/bower_components',
-          dest: '<%= yeoman.docs %>/dist/bower_components',
-          src: '{,**/}*.*'
+          cwd: '<%= yeoman.app %>/bower_components',
+          dest: '<%= yeoman.docs %>/dist/components',
+          src: ['jquery/dist/*.*','bootstrap/dist/**/*.*','SyntaxHighlighter/{scripts,styles}/*.*']
         },{
           expand: true,
           cwd: '<%= yeoman.docs %>/templates',
@@ -401,6 +401,11 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>/styles',
           dest: '<%= yeoman.docs %>/dist/styles',
           src: ['guide.css']
+        },{
+          expand: true,
+          cwd: '<%= yeoman.app %>/images/logo',
+          dest: '<%= yeoman.docs %>/dist/images',
+          src: '*.*'
         }]
       }
     },
@@ -514,7 +519,7 @@ module.exports = function (grunt) {
       guides.forEach(function (it) {
         _header = _header.replace('<%=' + item + '%>', item === it ? 'active' : '');
       });
-      _layout = _layout.replace('<%=header%>', header);
+      _layout = _layout.replace('<%=header%>', _header);
       _layout = _layout.replace('<%=footer%>', footer);
       _layout = _layout.replace('<%=content%>', content);
       _layout = _layout.replace('<%=catalogue%>', catalogue);
