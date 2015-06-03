@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Web Guide</title>
+  <meta name="description" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="./bower_components/SyntaxHighlighter/styles/shCore.css">
+  <link rel="stylesheet" href="./bower_components/SyntaxHighlighter/styles/shCoreMidnight.css">
+  <link rel="stylesheet" href="./styles/guide.css">
+
+</head>
+<body>
+
+<!-- Fixed navbar -->
+<header class="navbar navbar-inverse navbar-fixed-top guide-header" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand <%=index%>" href="./">Web前端指南</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav" link-active="active">
+        <li class="<%=html%>"><a href="./html.html">HTML 代码规范</a></li>
+        <li class="<%=css%>"><a href="./css.html">CSS 代码规范</a></li>
+        <li class="<%=javascript%>"><a href="./javascript.html">JavaScript 代码规范</a></li>
+        <li class="<%=performance%>"><a href="./performance.html">性能优化</a></li>
+        <li><a href="./component.html">组件库</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="./resources.html">学习资源</a></li>
+      </ul>
+    </div>
+    <!--/.nav-collapse -->
+  </div>
+</header>
+
+<div class="container-fluid guide-container" id="guide">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="guide-content guide-content-outline">
+        <h1 data-target="catalog-0">eeeeeee</h1>
+<h2 data-target="catalog-0-0">ggggg</h2>
+<p>hh</p>
+<pre class="brush: javascript; toolbar: false; ">  //两分钟保存一次
+  setInterval(function () {
+    $scope.saveGuide();
+  }, 120000);
+
+  //添加resize事件
+  $(window).resize(function () {
+    tinymce.get('content').iframeElement.style.height = document.documentElement.clientHeight - 198 + 'px';
+  });</pre>
+      </div>
+    </div>
+
+    <div class="col-md-3 guide-aside-panel">
+      <div class="guide-catalogue-panel">
+        <div class="guide-catalogue-header"><span class="glyphicon glyphicon-list"></span></div>
+        <div class="guide-catalogue">
+          <ul class="nav"><li><a href="javascript:void(0)" data-target="catalog-0">eeeeeee</a><ul class="nav"><li><a href="javascript:void(0)" data-target="catalog-0-0">ggggg</a></li></ul></li></ul>
+          <div class="guide-catalogue-arrow" style="display: none;">
+            <div class="up disabled"><span class="glyphicon glyphicon-chevron-up"></span></div>
+            <div class="down"><span class="glyphicon glyphicon-chevron-down"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-assist"></div>
+<footer class="footer">
+  <div class="footer-links">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9">
+          <ul class="links-item clearfix list-unstyled">
+            <li class="links-item-title"><strong>技术站点</strong></li>
+            <li class="links-item-content">
+              <a href="http://jquery.com/" target="_blank">jQuery</a>
+              <a href="http://angularjs.org/" target="_blank">Angular</a>
+              <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>
+              <a href="http://lesscss.org/" target="_blank">Less</a>
+              <a href="http://www.nodejs.org/" target="_blank">Node.js</a>
+              <a href="http://gruntjs.com/" target="_blank">Grunt</a>
+              <a href="http://bower.io/" target="_blank">Bower</a>
+              <a href="http://yeoman.io/" target="_blank">Yeoman</a>
+              <a href="/reference" target="_blank">更多</a>
+            </li>
+          </ul>
+
+          <ul class="links-item clearfix list-unstyled">
+            <li class="links-item-title"><strong>公司网站</strong></li>
+            <li class="links-item-content">
+              <a href="http://www.jushanghui.com/" target="_blank">巨商汇</a>
+              <a href="http://www.jshdev.jushanghui.com/" target="_blank">巨商汇idc</a>
+              <a href="http://www.jshdev.jushanghui.com/" target="_blank">巨商汇预生产</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <p class="links-item-title"><strong>意见与建议</strong></p>
+
+          <p class="links-item-content">
+            QQ 群：261258939
+            <a class="margin-left-lg" href="https://github.com/linder0209/web-guide/issues" target="_blank">问题汇总</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-copyright">
+    <div class="container text-center">
+      <div class="blog-footer-logo">Web 前端指南</div>
+      <p>Copyright &copy; 2015 Powered by Linder 版权所有</p>
+    </div>
+  </div>
+</footer>
+
+<script src="./bower_components/jquery/dist/jquery.js"></script>
+<script src="./bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+<!-- build:js ./scripts/syntaxhighlighter.js -->
+<script src="./bower_components/SyntaxHighlighter/scripts/XRegExp.js"></script>
+<script src="./bower_components/SyntaxHighlighter/scripts/shCore.js"></script>
+<script src="./bower_components/SyntaxHighlighter/scripts/shAutoloader.js"></script>
+<script src="./bower_components/SyntaxHighlighter/scripts/shBrushXml.js"></script>
+
+<script src="./scripts/scroll-spy.js"></script>
+<script src="./scripts/guide.js"></script>
+
+</body>
+</html>

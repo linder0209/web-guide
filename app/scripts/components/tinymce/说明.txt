@@ -1,2 +1,0 @@
-国际化下载地址
-http://www.tinymce.com/i18n/index.php
