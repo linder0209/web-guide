@@ -20,6 +20,7 @@
   "smarttabs": true,
   "globals": {
     "angular": false,
-    "tinymce": false
+    "tinymce": false,
+    "SyntaxHighlighter": false
   }
 }

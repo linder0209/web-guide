@@ -4,7 +4,6 @@ var express = require('express');
 var router = express.Router();
 
 var fs = require('fs');
-var path = 'D:/gitworkspace/web-guide/app/docs/';//先写死，后期再改
 
 var webGuideManage = {
   index: function (req, res) {
@@ -13,10 +12,12 @@ var webGuideManage = {
 
   getGuide: function (req, res) {
     var type = req.params.type;
+    var index = __dirname.lastIndexOf('server');
+    var path = __dirname.substring(0, index) + 'app/docs/guide/';
     var filePath = path + type + '.html';
 
     fs.exists(filePath, function (exists) {
-      if(exists){
+      if (exists) {
         fs.readFile(filePath, 'utf-8', function (err, content) {
           if (err) {
             res.send({
@@ -30,7 +31,7 @@ var webGuideManage = {
             });
           }
         });
-      }else{
+      } else {
         res.send({
           success: true,
           content: ''
@@ -42,12 +43,58 @@ var webGuideManage = {
   save: function (req, res) {
     var data = req.body;
     var type = data.type;
-    var filePath = path + type + '.html';
-    fs.writeFile(filePath, data.content, function (err) {
+    var index = __dirname.lastIndexOf('server');
+    var path = __dirname.substring(0, index) + 'app/docs/guide/';
+
+    //同步保存，也可改成异步
+    try{
+      //原内容
+      fs.writeFileSync(path + type + '.html',data.content);
+      //目录
+      fs.writeFileSync(path + type + '-catalogue.html',data.catalogueHtml);
+      //带目录的内容
+      fs.writeFileSync(path + type + '-catalogue-content.html',data.catalogueContent);
       res.send({
-        success: !err
+        success: true
       });
-    });
+    }catch(e){
+      res.send({
+        success: false,
+        errorMessage: e.message
+      });
+    }
+
+    /*
+    fs.writeFile(path + type + '.html',data.content,function(err){
+      if(err){
+        res.send({
+          success: false,
+          errorMessage: err.message
+        });
+      }else{
+        fs.writeFile(path + type + '-catalogue.html',data.catalogueHtml,function(err){
+          if(err){
+            res.send({
+              success: false,
+              errorMessage: err.message
+            });
+          }else{
+            fs.writeFile(path + type + '-catalogue-content.html',data.catalogueContent,function(err){
+              if(err){
+                res.send({
+                  success: false,
+                  errorMessage: err.message
+                });
+              }else{
+                res.send({
+                  success: true
+                });
+              }
+            });
+          }
+        });
+      }
+    });*/
   }
 };
 

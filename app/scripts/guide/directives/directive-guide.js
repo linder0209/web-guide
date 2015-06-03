@@ -17,15 +17,25 @@ angular.module('webGuideApp')
             $catalogue.addClass('sr-only');
             $catalogue.find('.nav').show();
           }
+          //TODO 待完成，当滑到最下面时处理
+          /*if(scrollTop + 500 > document.documentElement.scrollHeight){
+            $catalogue.css({
+              position: 'absolute'
+            });
+          }else{
+            $catalogue.css({
+              position: 'fixed'
+            });
+          }*/
         });
 
         //点击栏目图标事件
-        element.find('.guide-catalogue-header span').click(function (e) {
+        element.on('click', '.guide-catalogue-header span', function (e) {
           $(e.target).parent().next().toggle();
         });
 
-        var $upElement = $('.guide-catalogue-arrow .up',element);
-        var $downElement = $('.guide-catalogue-arrow .down',element);
+        var $upElement = $('.guide-catalogue-arrow .up', element);
+        var $downElement = $('.guide-catalogue-arrow .down', element);
 
         var $navElement = $('.guide-catalogue > .nav', element);
         var $rowElements = $navElement.find('li > a');
@@ -55,17 +65,17 @@ angular.module('webGuideApp')
         }
 
         function fadeInOutDown(step) {
-          if(rowIndex === undefined || visibleRowSize === undefined || rowSize === undefined){
+          if (rowIndex === undefined || visibleRowSize === undefined || rowSize === undefined) {
             rowIndex = 0;
             visibleRowSize = 0;
             rowSize = 0;
-            var menuHeight = $('.guide-catalogue',element).outerHeight();
+            var menuHeight = $('.guide-catalogue', element).outerHeight();
             var subHeight = 0;
 
-            $rowElements.each(function(index, element) {
+            $rowElements.each(function (index, element) {
               var height = $(this).outerHeight();
               subHeight += height;
-              rowSize +=  height / rowHeight;
+              rowSize += height / rowHeight;
               if (subHeight <= menuHeight) {
                 visibleRowSize += height / rowHeight;
               }
@@ -134,26 +144,25 @@ angular.module('webGuideApp')
         }
 
         //显示隐藏上下翻滚箭头事件
-        element.find('.guide-catalogue > ul').mouseenter(function (e) {
+        element.on('mouseenter', '.guide-catalogue > ul', function (e) {
           if (visibleRowSize !== rowSize) {
             element.find('.guide-catalogue-arrow').show();
           }
-        }).mouseleave(function (e) {
+        }).on('mouseleave', '.guide-catalogue > ul', function (e) {
           element.find('.guide-catalogue-arrow').hide();
-        });
-        element.find('.guide-catalogue-arrow').mouseenter(function(e){
+        }).on('mouseenter', '.guide-catalogue-arrow', function (e) {
           $(e.currentTarget).show();
         });
 
         // 上下翻滚栏目事件
-        element.on('click','.guide-catalogue-arrow > div', function (e) {
+        element.on('click', '.guide-catalogue-arrow > div', function (e) {
           var el = $(e.currentTarget);
           if (el.hasClass('disabled')) {
             return;
           }
-          if(el.hasClass('up')){
+          if (el.hasClass('up')) {
             fadeInOutUp();
-          }else{
+          } else {
             fadeInOutDown();
           }
         });
@@ -167,16 +176,16 @@ angular.module('webGuideApp')
           });
 
           //注册监听事件，当鼠标滑轮移动到活动的target时，触发该事件
-          element.on('activate.hf.scrollspy', '.guide-catalogue > .nav li', function(e){
-            if(!$('.guide-catalogue-panel').hasClass('sr-only')){
+          element.on('activate.hf.scrollspy', '.guide-catalogue > .nav li', function (e) {
+            if (!$('.guide-catalogue-panel').hasClass('sr-only')) {
               var $activeEl = $(e.currentTarget);
               var $nav = $('.guide-catalogue', element);
               var sub = $activeEl.offset().top - $nav.offset().top;
               // 在 $nav 高度范围内可见 0 - 420（也就是说 sub 值为 0 - 390 可见），否则隐藏，需要处理显示
-              if(sub > 390){
+              if (sub > 390) {
                 fadeInOutDown((sub - 390) / 30);
-              }else if(sub < 0){
-                fadeInOutUp((- sub)/ 30);
+              } else if (sub < 0) {
+                fadeInOutUp((-sub) / 30);
               }
             }
           });

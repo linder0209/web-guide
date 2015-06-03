@@ -7,7 +7,7 @@
  * @createdDate 2015-5-29
  * */
 
-angular.module('webGuideApp').controller('WebGuideManageCtrl', function ($scope, $location, webGuideManageService) {
+angular.module('webGuideApp').controller('WebGuideManageCtrl', function ($scope, $location, webGuideManageService, publishMethod) {
   //先销毁tinyMCE实例
   if (tinymce && tinymce.get('content')) {
     tinymce.get('content').destroy();
@@ -15,7 +15,9 @@ angular.module('webGuideApp').controller('WebGuideManageCtrl', function ($scope,
 
   $scope.guide = {
     type: 'html',
-    content: ''
+    content: '',//原内容
+    catalogueHtml: '',//目录
+    catalogueContent: ''//带目录的内容
   };
 
   //jshint -W106
@@ -24,11 +26,11 @@ angular.module('webGuideApp').controller('WebGuideManageCtrl', function ($scope,
     menubar: false, //Disable all menu
     content_css: '/styles/tinymce.css',
     plugins: [
-      'autolink link image preview hr code fullscreen table textcolor charmap'
+      'autolink link image preview hr code fullscreen table textcolor charmap syntaxhighlighter'
     ],
     toolbar: 'undo redo | bold italic underline strikethrough subscript superscript | styleselect | fontselect fontsizeselect formatselect ' +
     '| forecolor backcolor removeformat | bullist numlist outdent indent blockquote | alignleft aligncenter alignright alignjustify | ' +
-    'hr image link unlink | charmap table code | preview fullscreen'
+    'hr image link unlink | charmap table syntaxhighlighter code | preview fullscreen'
   };
 
   webGuideManageService.getGuide('html', function (data) {
@@ -38,7 +40,7 @@ angular.module('webGuideApp').controller('WebGuideManageCtrl', function ($scope,
   });
 
   $scope.switchTo = function (type, event) {
-    if(type === $scope.guide.type){
+    if (type === $scope.guide.type) {
       return;
     }
     webGuideManageService.getGuide(type, function (data) {
@@ -54,7 +56,13 @@ angular.module('webGuideApp').controller('WebGuideManageCtrl', function ($scope,
    * 保存
    */
   $scope.saveGuide = function () {
-    webGuideManageService.saveGuide($scope.guide, function (data) {
+    //生成带目录的html片段
+    var guide = $scope.guide;
+    var html = publishMethod.generateHtml(guide.content);
+    guide.catalogueHtml = html.catalogue || '';
+    guide.catalogueContent = html.content || '';
+
+    webGuideManageService.saveGuide(guide, function (data) {
       if (data.success === true) {
 
       }
@@ -64,5 +72,10 @@ angular.module('webGuideApp').controller('WebGuideManageCtrl', function ($scope,
   //两分钟保存一次
   setInterval(function () {
     $scope.saveGuide();
-  }, 60000);
+  }, 10000);
+
+  //添加resize事件
+  $(window).resize(function () {
+    tinymce.get('content').iframeElement.style.height = document.documentElement.clientHeight - 198 + 'px';
+  });
 });

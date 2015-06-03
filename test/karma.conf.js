@@ -33,6 +33,7 @@ module.exports = function(config) {
       'app/bower_components/angular-touch/angular-touch.js',
       'app/bower_components/tinymce/tinymce.min.js',
       'app/bower_components/angular-ui-tinymce/src/tinymce.js',
+      'app/bower_components/tinymce-syntaxhighlighter/plugin.js',
       // endbower
       'app/scripts/**/*.js',
       'test/mock/**/*.js',

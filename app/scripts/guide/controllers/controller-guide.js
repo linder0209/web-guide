@@ -7,6 +7,8 @@
  * @createdDate 2015-6-1
  * */
 
-angular.module('webGuideApp').controller('WebGuideCtrl', function ($scope, $location) {
-
+angular.module('webGuideApp').controller('WebGuideCtrl', function ($scope, $timeout, syntaxHighlighter) {
+  $timeout(function () {
+    syntaxHighlighter.format('/bower_components/SyntaxHighlighter/scripts/');
+  }, 100);
 });

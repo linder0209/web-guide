@@ -10,34 +10,37 @@
 
   <!-- build:css({.tmp,app}) styles/main.css -->
   <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="../bower_components/SyntaxHighlighter/styles/shCore.css">
+  <link rel="stylesheet" href="../bower_components/SyntaxHighlighter/styles/shCoreMidnight.css">
   <link rel="stylesheet" href="../styles/guide.css">
   <!-- endbuild -->
 
 </head>
 <body ng-app="webGuideApp" ng-controller="WebGuideCtrl">
 <% include ../views/common/header.html %>
-<div class="jumbotron">
-  <div class="container text-center">
-    <h1>Web前端指南</h1>
 
-    <h2>
-      快速开发系统、优化系统性能、方便系统维护
-    </h2>
-
-  </div>
-</div>
-<!--/.jumbotron -->
-
-<div class="container guide-container">
+<div class="container-fluid guide-container">
   <div class="row" generate-catalogue>
     <div class="col-md-9">
-      <div class="guide-content guide-content-outline"  ng-include="'../docs/demo.html'">
-
+      <div class="guide-content guide-content-outline">
+        <!--动态引入include 带目录的文章-->
+        <%- include('../docs/' + locals.guideType + '-catalogue-content.html') %>
       </div>
     </div>
 
     <div class="col-md-3 guide-aside-panel">
-      <% include ../docs/mulu.html %>
+      <div class="guide-catalogue-panel">
+        <div class="guide-catalogue-header"><span class="glyphicon glyphicon-list"></span></div>
+        <div class="guide-catalogue">
+          <!--动态引入include 目录-->
+          <%- include('../docs/' + locals.guideType + '-catalogue.html') %>
+
+          <div class="guide-catalogue-arrow" style="display: none;">
+            <div class="up disabled"><span class="glyphicon glyphicon-chevron-up"></span></div>
+            <div class="down"><span class="glyphicon glyphicon-chevron-down"></span></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -52,14 +55,21 @@
 <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
+<!-- build:js ../scripts/syntaxhighlighter.js -->
+<script src="../bower_components/SyntaxHighlighter/scripts/XRegExp.js"></script>
+<script src="../bower_components/SyntaxHighlighter/scripts/shCore.js"></script>
+<script src="../bower_components/SyntaxHighlighter/scripts/shAutoloader.js"></script>
+<script src="../bower_components/SyntaxHighlighter/scripts/shBrushXml.js"></script>
+<!-- endbuild -->
 
 <!-- build:js({.tmp,app}) scripts/guide.js -->
 <script src="../scripts/guide/apps/app-guide.js"></script>
 <script src="../scripts/services/httpInterceptor.js"></script>
 <script src="../scripts/guide/services/service-guide.js"></script>
 <script src="../scripts/guide/controllers/controller-guide.js"></script>
+<script src="../scripts/directives/directive-link-active.js"></script>
 <script src="../scripts/guide/directives/directive-guide.js"></script>
-
 <!-- endbuild -->
+
 </body>
 </html>

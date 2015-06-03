@@ -172,6 +172,14 @@ body {
 .manage-footer-assist {
   padding-top: 30px;
 }
+/** ���������� ��ʽ**/
+.syntaxhighlighter {
+  padding: 10px 0;
+}
+/** ������Bootstrap��ͻ**/
+.syntaxhighlighter table td.code .container:before {
+  display: none;
+}
 .masthead-button-links {
   margin-top: 30px;
 }
@@ -192,6 +200,9 @@ body {
 .guide-half-rule {
   width: 150px;
   margin: 30px auto;
+}
+.guide-container {
+  padding-left: 30px;
 }
 .guide-content {
   margin-top: 30px;
@@ -348,7 +359,7 @@ body {
 .guide-catalogue-panel {
   position: fixed;
   right: 0;
-  top: 70px;
+  top: 60px;
   z-index: 10;
   padding-right: 10px;
   display: none;
@@ -380,7 +391,7 @@ body {
   }
 }
 .guide-catalogue {
-  height: 422px;
+  height: 480px;
   overflow: hidden;
   position: relative;
 }

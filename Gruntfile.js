@@ -7,6 +7,8 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
+var fs = require('fs');
+
 module.exports = function (grunt) {
 
   // Load grunt tasks automatically
@@ -22,6 +24,7 @@ module.exports = function (grunt) {
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
+    docs: (require('./bower.json').appPath || 'app') + '/docs',
     dist: 'dist',
     server: 'server',
     publish: 'publish',
@@ -144,7 +147,8 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      server: '.tmp'
+      server: '.tmp',
+      docs: '<%= yeoman.docs %>/dist'
     },
 
     // Add vendor prefixed styles
@@ -380,6 +384,24 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
+      },
+      docs: {
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.docs %>/bower_components',
+          dest: '<%= yeoman.docs %>/dist/bower_components',
+          src: '{,**/}*.*'
+        },{
+          expand: true,
+          cwd: '<%= yeoman.docs %>/templates',
+          dest: '<%= yeoman.docs %>/dist/scripts',
+          src: ['guide.js', 'scroll-spy.js']
+        },{
+          expand: true,
+          cwd: '<%= yeoman.app %>/styles',
+          dest: '<%= yeoman.docs %>/dist/styles',
+          src: ['guide.css']
+        }]
       }
     },
 
@@ -459,5 +481,50 @@ module.exports = function (grunt) {
     'newer:jshint',
     'test',
     'build'
+  ]);
+
+  //创建指南文档
+  grunt.registerTask('create',  function () {
+    var guides = ['html', 'css', 'javascript', 'performance'];
+    var path = __dirname + '/app/docs/';
+    //fs.readFileSync(filename[, options])
+    //The encoding option is ignored if data is a buffer. It defaults to 'utf8'.
+    var header = fs.readFileSync(path + 'templates/header.html',{encoding: 'utf8'});
+    var footer = fs.readFileSync(path + 'templates/footer.html',{encoding: 'utf8'});
+    var layout = fs.readFileSync(path + 'templates/layout.html',{encoding: 'utf8'});
+    fs.mkdirSync(path + 'dist');
+    //首页
+    var html = fs.readFileSync(path + 'templates/index.html',{encoding: 'utf8'});
+    var _header = header;
+    _header = _header.replace('<%=index%>','active');
+    guides.forEach(function (item) {
+      _header = _header.replace('<%=' + item + '%>','');
+    });
+    html = html.replace('<%=header%>', _header);
+    html = html.replace('<%=footer%>', footer);
+    fs.writeFileSync(path + 'dist/index.html', html);
+
+    //其他指南
+    guides.forEach(function (item) {
+      var content = fs.readFileSync(path + 'guide/' + item + '-catalogue-content.html');
+      var catalogue = fs.readFileSync(path + 'guide/' + item + '-catalogue.html');
+      var _layout = layout;
+      _header = header;
+      _header = _header.replace('<%=index%>', '');
+      guides.forEach(function (it) {
+        _header = _header.replace('<%=' + item + '%>', item === it ? 'active' : '');
+      });
+      _layout = _layout.replace('<%=header%>', header);
+      _layout = _layout.replace('<%=footer%>', footer);
+      _layout = _layout.replace('<%=content%>', content);
+      _layout = _layout.replace('<%=catalogue%>', catalogue);
+      fs.writeFileSync(path + 'dist/' + item + '.html', _layout);
+    });
+  });
+
+  grunt.registerTask('docs', [
+    'clean:docs',
+    'create',
+    'copy:docs'
   ]);
 };

@@ -4,16 +4,11 @@ var express = require('express');
 var router = express.Router();
 
 var webGuide = {
-  index: function (req, res) {
-    res.render('web-guide', { title: 'Web Guild 首页' });
-  },
   guideType: function (req, res) {
     res.locals.guideType = req.params.guideType;
     res.render('guide/web-guide', { title: 'Web Guild' });
   }
 };
-
-router.get('/', webGuide.index);
 
 router.get('/:guideType', webGuide.guideType);
 
