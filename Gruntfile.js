@@ -403,7 +403,7 @@ module.exports = function (grunt) {
           src: ['guide.css']
         },{
           expand: true,
-          cwd: '<%= yeoman.app %>/images/logo',
+          cwd: '<%= yeoman.app %>/images',
           dest: '<%= yeoman.docs %>/dist/images',
           src: '*.*'
         }]

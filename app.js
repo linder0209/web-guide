@@ -30,7 +30,7 @@ app.set('view engine', 'html');
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 var rootPath = __dirname + '/' + ('development' === app.get('env') ? 'app' : 'webapp');
-app.use(favicon(rootPath + '/favicon.ico'));
+app.use(favicon(rootPath + '/favicon.png'));
 
 app.use(logger('dev'));
 app.use(bodyParser({limit: '10mb'}));//设置前端post提交最大内容
