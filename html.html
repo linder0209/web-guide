@@ -7,9 +7,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="./bower_components/SyntaxHighlighter/styles/shCore.css">
-  <link rel="stylesheet" href="./bower_components/SyntaxHighlighter/styles/shCoreMidnight.css">
+  <link rel="icon" href="./images/favicon.png" type="image/x-icon" />
+
+  <link rel="stylesheet" href="./components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="./components/SyntaxHighlighter/styles/shCore.css">
+  <link rel="stylesheet" href="./components/SyntaxHighlighter/styles/shCoreMidnight.css">
   <link rel="stylesheet" href="./styles/guide.css">
 
 </head>
@@ -24,11 +26,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand <%=index%>" href="./">Web前端指南</a>
+      <a class="navbar-brand " href="./">Web前端指南</a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav" link-active="active">
-        <li class="<%=html%>"><a href="./html.html">HTML 代码规范</a></li>
+        <li class="active"><a href="./html.html">HTML 代码规范</a></li>
         <li class="<%=css%>"><a href="./css.html">CSS 代码规范</a></li>
         <li class="<%=javascript%>"><a href="./javascript.html">JavaScript 代码规范</a></li>
         <li class="<%=performance%>"><a href="./performance.html">性能优化</a></li>
@@ -46,18 +48,7 @@
   <div class="row">
     <div class="col-md-9">
       <div class="guide-content guide-content-outline">
-        <h1 data-target="catalog-0">eeeeeee</h1>
-<h2 data-target="catalog-0-0">ggggg</h2>
-<p>hh</p>
-<pre class="brush: javascript; toolbar: false; ">  //两分钟保存一次
-  setInterval(function () {
-    $scope.saveGuide();
-  }, 120000);
-
-  //添加resize事件
-  $(window).resize(function () {
-    tinymce.get('content').iframeElement.style.height = document.documentElement.clientHeight - 198 + 'px';
-  });</pre>
+        
       </div>
     </div>
 
@@ -65,7 +56,7 @@
       <div class="guide-catalogue-panel">
         <div class="guide-catalogue-header"><span class="glyphicon glyphicon-list"></span></div>
         <div class="guide-catalogue">
-          <ul class="nav"><li><a href="javascript:void(0)" data-target="catalog-0">eeeeeee</a><ul class="nav"><li><a href="javascript:void(0)" data-target="catalog-0-0">ggggg</a></li></ul></li></ul>
+          
           <div class="guide-catalogue-arrow" style="display: none;">
             <div class="up disabled"><span class="glyphicon glyphicon-chevron-up"></span></div>
             <div class="down"><span class="glyphicon glyphicon-chevron-down"></span></div>
@@ -126,14 +117,13 @@
   </div>
 </footer>
 
-<script src="./bower_components/jquery/dist/jquery.js"></script>
-<script src="./bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="./components/jquery/dist/jquery.js"></script>
+<script src="./components/bootstrap/dist/js/bootstrap.js"></script>
 
-<!-- build:js ./scripts/syntaxhighlighter.js -->
-<script src="./bower_components/SyntaxHighlighter/scripts/XRegExp.js"></script>
-<script src="./bower_components/SyntaxHighlighter/scripts/shCore.js"></script>
-<script src="./bower_components/SyntaxHighlighter/scripts/shAutoloader.js"></script>
-<script src="./bower_components/SyntaxHighlighter/scripts/shBrushXml.js"></script>
+<script src="./components/SyntaxHighlighter/scripts/XRegExp.js"></script>
+<script src="./components/SyntaxHighlighter/scripts/shCore.js"></script>
+<script src="./components/SyntaxHighlighter/scripts/shAutoloader.js"></script>
+<script src="./components/SyntaxHighlighter/scripts/shBrushXml.js"></script>
 
 <script src="./scripts/scroll-spy.js"></script>
 <script src="./scripts/guide.js"></script>

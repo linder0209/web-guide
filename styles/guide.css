@@ -197,6 +197,18 @@ body {
   background-color: #FFF;
   border-bottom: 1px solid #E5E5E5;
 }
+.guide-featurette .img-responsive {
+  margin-left: auto;
+  margin-right: auto;
+  height: 80px;
+}
+.guide-featurette p {
+  text-align: left;
+  text-indent: 2em;
+}
+.guide-featurette .lead {
+  text-align: center;
+}
 .guide-half-rule {
   width: 150px;
   margin: 30px auto;
