@@ -8,52 +8,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="icon" href="./images/favicon.png" type="image/x-icon" />
-
+  <!-- build:css ./styles/main.min.css -->
   <link rel="stylesheet" href="./components/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="./components/SyntaxHighlighter/styles/shCore.css">
-  <link rel="stylesheet" href="./components/SyntaxHighlighter/styles/shCoreMidnight.css">
   <link rel="stylesheet" href="./styles/guide.css">
+  <!-- endbuild -->
 
 </head>
 <body>
-
 <%=header%>
-
-<div class="container-fluid guide-container" id="guide">
-  <div class="row">
-    <div class="col-md-9">
-      <div class="guide-content guide-content-outline">
-        <%=content%>
-      </div>
-    </div>
-
-    <div class="col-md-3 guide-aside-panel">
-      <div class="guide-catalogue-panel">
-        <div class="guide-catalogue-header"><span class="glyphicon glyphicon-list"></span></div>
-        <div class="guide-catalogue">
-          <%=catalogue%>
-          <div class="guide-catalogue-arrow" style="display: none;">
-            <div class="up disabled"><span class="glyphicon glyphicon-chevron-up"></span></div>
-            <div class="down"><span class="glyphicon glyphicon-chevron-down"></span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+<%=content%>
 <%=footer%>
 
+<!-- build:js ./scripts/main.min.js -->
 <script src="./components/jquery/dist/jquery.js"></script>
 <script src="./components/bootstrap/dist/js/bootstrap.js"></script>
-
-<script src="./components/SyntaxHighlighter/scripts/XRegExp.js"></script>
-<script src="./components/SyntaxHighlighter/scripts/shCore.js"></script>
-<script src="./components/SyntaxHighlighter/scripts/shAutoloader.js"></script>
-<script src="./components/SyntaxHighlighter/scripts/shBrushXml.js"></script>
-
-<script src="./scripts/scroll-spy.js"></script>
-<script src="./scripts/guide.js"></script>
-
+<script src="./scripts/back-to-top.js"></script>
+<!-- endbuild -->
 </body>
 </html>

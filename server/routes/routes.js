@@ -7,6 +7,7 @@ var examples = require('./examples/examples');
 var main = require('./main');
 var webGuide = require('./web-guide');
 var webGuideManage = require('./web-guide-manage');
+var resources = require('./resources');
 
 
 router.get('/', function (req, res) {
@@ -28,5 +29,6 @@ module.exports = function (app) {
   app.use('/', main);
   app.use('/guide', webGuide);
   app.use('/manage', webGuideManage);
+  app.use('/resources', resources);
   app.use('/examples', examples);
 };

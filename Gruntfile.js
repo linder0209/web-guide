@@ -148,7 +148,16 @@ module.exports = function (grunt) {
         }]
       },
       server: '.tmp',
-      docs: '<%= yeoman.docs %>/dist'
+      docs: ['<%= yeoman.docs %>/dist','<%= yeoman.docs %>/.tmp'],
+      tmp: [
+        '<%= yeoman.docs %>/dist/scripts/*.*',
+        '!<%= yeoman.docs %>/dist/scripts/*.min.js',
+        '<%= yeoman.docs %>/dist/styles/*.*',
+        '!<%= yeoman.docs %>/dist/styles/*.min.css',
+        '<%= yeoman.docs %>/dist/components/bootstrap',
+        '<%= yeoman.docs %>/dist/components/jquery',
+        '<%= yeoman.docs %>/dist/components/SyntaxHighlighter/styles'
+      ]
     },
 
     // Add vendor prefixed styles
@@ -237,30 +246,56 @@ module.exports = function (grunt) {
      <!-- endbuild -->
      **/
     useminPrepare: {
-      html: '<%= yeoman.app %>/index.html',
-      options: {
-        dest: '<%= yeoman.dist %>',
-        flow: {
-          html: {
-            steps: {
-              js: ['concat', 'uglifyjs'],
-              css: ['cssmin']
-            },
-            post: {}
+      dist: {
+        html: '<%= yeoman.app %>/index.html',
+        options: {
+          dest: '<%= yeoman.dist %>',
+          flow: {
+            html: {
+              steps: {
+                js: ['concat', 'uglifyjs'],
+                css: ['cssmin']
+              },
+              post: {}
+            }
           }
         }
+      },
+      docs: {
+        options: {
+          staging: '<%= yeoman.docs %>/.tmp',//临时目录
+          dest: '<%= yeoman.docs %>/dist',//输出路径
+          flow: {
+            html: {
+              steps: {
+                js: ['concat', 'uglifyjs'],
+                css: ['cssmin']
+              },
+              post: {}
+            }
+          }
+        },
+        src: [
+          '<%= yeoman.docs %>/dist/*.html'
+        ]
       }
+
     },
 
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/{,*/}*.html'],
-      css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
+      html: ['<%= yeoman.dist %>/{,*/}*.html',
+        '<%= yeoman.docs %>/dist/{,*/}*.html'],
+      css: ['<%= yeoman.dist %>/styles/{,*/}*.css',
+        '<%= yeoman.docs %>/dist/styles/{,*/}*.css'],
       options: {
         assetsDirs: [
           '<%= yeoman.dist %>',
           '<%= yeoman.dist %>/images',
-          '<%= yeoman.dist %>/styles'
+          '<%= yeoman.dist %>/styles',
+          '<%= yeoman.docs %>/dist',
+          '<%= yeoman.docs %>/dist/images',
+          '<%= yeoman.docs %>/dist/styles'
         ]
       }
     },
@@ -395,7 +430,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.docs %>/templates',
           dest: '<%= yeoman.docs %>/dist/scripts',
-          src: ['guide.js', 'scroll-spy.js']
+          src: ['guide.js', 'scroll-spy.js', 'back-to-top.js']
         },{
           expand: true,
           cwd: '<%= yeoman.app %>/styles',
@@ -405,7 +440,12 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.app %>/images',
           dest: '<%= yeoman.docs %>/dist/images',
-          src: '*.*'
+          src: ['logo-*.*','favicon.png']
+        },{
+          expand: true,
+          cwd: '<%= yeoman.app %>/bower_components/bootstrap/dist/fonts',
+          dest: '<%= yeoman.docs %>/dist/fonts',
+          src: ['*.*']
         }]
       }
     },
@@ -489,47 +529,59 @@ module.exports = function (grunt) {
   ]);
 
   //创建指南文档
-  grunt.registerTask('create',  function () {
+  grunt.registerTask('generateDocs',  function () {
     var guides = ['html', 'css', 'javascript', 'performance'];
     var path = __dirname + '/app/docs/';
+    var commonPath = __dirname + '/app/views/common/';
+    var dist = path + 'dist';
     //fs.readFileSync(filename[, options])
     //The encoding option is ignored if data is a buffer. It defaults to 'utf8'.
     var header = fs.readFileSync(path + 'templates/header.html',{encoding: 'utf8'});
     var footer = fs.readFileSync(path + 'templates/footer.html',{encoding: 'utf8'});
+    var layoutDocs = fs.readFileSync(path + 'templates/layout-docs.html',{encoding: 'utf8'});
     var layout = fs.readFileSync(path + 'templates/layout.html',{encoding: 'utf8'});
-    fs.mkdirSync(path + 'dist');
+    fs.mkdirSync(dist);
     //首页
-    var html = fs.readFileSync(path + 'templates/index.html',{encoding: 'utf8'});
+    var main = fs.readFileSync(commonPath + 'main.html',{encoding: 'utf8'});
+    //资源文件
+    var resources = fs.readFileSync(commonPath + 'resources.html',{encoding: 'utf8'});
     var _header = header;
-    _header = _header.replace('<%=index%>','active');
     guides.forEach(function (item) {
       _header = _header.replace('<%=' + item + '%>','');
     });
-    html = html.replace('<%=header%>', _header);
-    html = html.replace('<%=footer%>', footer);
-    fs.writeFileSync(path + 'dist/index.html', html);
+    layout = layout.replace('<%=footer%>', footer);
+    layout = layout.replace('<%=header%>', _header);
+    fs.writeFileSync(dist + '/index.html', layout.replace('<%=index%>','active').replace('<%=resources%>','').replace('<%=content%>', main));
+
+    fs.writeFileSync(dist + '/resources.html', layout.replace('<%=index%>','').replace('<%=resources%>','active').replace('<%=content%>', resources));
 
     //其他指南
     guides.forEach(function (item) {
       var content = fs.readFileSync(path + 'guide/' + item + '-catalogue-content.html');
       var catalogue = fs.readFileSync(path + 'guide/' + item + '-catalogue.html');
-      var _layout = layout;
+      var _layout = layoutDocs;
       _header = header;
-      _header = _header.replace('<%=index%>', '');
+      _header = _header.replace('<%=index%>', '').replace('<%=resources%>', '');
       guides.forEach(function (it) {
-        _header = _header.replace('<%=' + item + '%>', item === it ? 'active' : '');
+        _header = _header.replace('<%=' + it + '%>', item === it ? 'active' : '');
       });
       _layout = _layout.replace('<%=header%>', _header);
       _layout = _layout.replace('<%=footer%>', footer);
       _layout = _layout.replace('<%=content%>', content);
       _layout = _layout.replace('<%=catalogue%>', catalogue);
-      fs.writeFileSync(path + 'dist/' + item + '.html', _layout);
+      fs.writeFileSync(dist + '/' + item + '.html', _layout);
     });
   });
 
   grunt.registerTask('docs', [
     'clean:docs',
-    'create',
-    'copy:docs'
+    'generateDocs',
+    'copy:docs',
+    'useminPrepare:docs',
+    'concat:generated',
+    'cssmin:generated',// 用 useminPrepare 生成的 cssmin config 压缩 css
+    'uglify:generated',// 用 useminPrepare 生成的 uglify config 压缩 js
+    'usemin', // 用重新命名的压缩文件替换
+    'clean:tmp'//删除多余的文件
   ]);
 };

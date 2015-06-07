@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>弹出框 popover 例子</title>
+  <meta name="description" content="">
+  <!-- 兼容性问题，使用浏览器最高版本来渲染-->
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="../app/bower_components/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+
+<a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="hover"
+    data-content="And here's some amazing content. It's very engaging. Right?">可消失的弹出框</a>
+
+<a tabindex="0" class="btn btn-lg btn-danger" data-toggle="popover" data-trigger="hover"
+   data-content="And here's some amazing content. It's very engaging. Right?">可消失的弹出框</a>
+<script src="../app/bower_components/jquery/dist/jquery.js"></script>
+<script src="../app/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script>
+  $(function(){
+    $('a').popover();
+  });
+</script>
+</body>
+</html>

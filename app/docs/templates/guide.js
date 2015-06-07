@@ -231,6 +231,7 @@ $(function () {
       }
     };
   };
-  syntaxHighlighter().format('./bower_components/SyntaxHighlighter/scripts/');
+  syntaxHighlighter().format('./components/SyntaxHighlighter/scripts/');
+
 
 });

@@ -361,7 +361,7 @@
 //博客目录 end
 
 // 返回顶部
-a.back-to-top {
+.back-to-top {
   text-indent: -999em;
   position: fixed;
   bottom: 20px;
@@ -373,8 +373,8 @@ a.back-to-top {
   display: none;
   &:after,
   &:before {
-    font-family: "FontAwesome";
-    content: "\f062";
+    font-family: "Glyphicons Halflings";
+    content: "\e093";
     text-indent: 0;
     position: absolute;
     top: 0;
@@ -385,14 +385,14 @@ a.back-to-top {
   }
 }
 
-a.back-to-top:before {
+.back-to-top:before {
   .transform(translateY(3em));
 }
 
-a.back-to-top:hover:after {
+.back-to-top:hover:after {
   .transform(translateY(-3em));
 }
 
-a.back-to-top:hover:before {
+.back-to-top:hover:before {
   .transform(translateY(0));
 }

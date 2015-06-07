@@ -16,126 +16,20 @@
 </head>
 <body ng-app="webGuideApp" ng-controller="MainCtrl">
 <% include ./views/common/header.html %>
-
-<div class="jumbotron">
-  <div class="container text-center">
-    <h1>Web前端指南</h1>
-
-    <h2>
-      快速开发系统、优化系统性能、方便系统维护
-    </h2>
-
-    <p class="margin-top-vl">
-      Web前端成员：王彦军、廖艳丽、王振鹏、邓衍鲁、李军芳、王亚茹、赵艳晴、仇昕、汪莎、张敏
-    </p>
-
-    <p class="masthead-button-links">
-      <a class="btn btn-lg btn-primary" target="_blank" href="https://github.com/linder0209/web-guide">下载指南源代码</a>
-      <a class="btn btn-lg btn-primary" target="_blank" href="https://github.com/linder0209/web-guide/issues">意见反馈</a>
-    </p>
-  </div>
-</div>
-<!--/.jumbotron -->
-
-<div class="guide-featurette">
-  <div class="container">
-    <h2>Web 前端必备利器</h2>
-
-    <p class="lead">掌握以下技术，提升开发能力，做一名优秀的Web前端工程师。</p>
-
-    <hr class="guide-half-rule">
-
-    <div class="row">
-      <div class="col-sm-4">
-        <img src="images/bootstrap.png" alt="Bootstrap" class="img-responsive">
-
-        <h3>Css框架 <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a></h3>
-
-        <p>Bootstrap 是最受欢迎的 HTML、CSS 和 JS 框架，用于开发响应式布局、移动设备优先的 WEB 项目。</p>
-        <p>
-          为所有开发者、所有应用场景而设计。
-          Bootstrap 让前端开发更快速、简单。所有开发者都能快速上手、所有设备都可以适配、所有项目都适用。
-          <a href="http://v3.bootcss.com/" target="_blank">中文网站</a>
-        </p>
-      </div>
-
-      <div class="col-sm-4">
-        <img src="images/less.png" alt="Less" class="img-responsive">
-
-        <h3>预处理脚本 <a href="http://lesscss.org/" target="_blank">Less</a></h3>
-
-        <p>
-          Less 是一门 CSS 预处理语言，它扩充了 CSS 语言，增加了诸如变量、混合（mixin）、函数等功能，让 CSS 更易维护、方便制作主题、扩充。
-          中文网址为 <a href="http://less.bootcss.com/" target="_blank">http://less.bootcss.com</a>
-        </p>
-
-        <p>Less 可以运行在 Node、浏览器和 Rhino 平台上。网上有很多第三方工具帮助你编译 Less 源码。</p>
-      </div>
-
-      <div class="col-sm-4">
-        <img src="images/nodejs.png" alt="Node.js" class="img-responsive">
-
-        <h3>Javascript 平台 <a href="https://nodejs.org/" target="_blank">Node.js</a></h3>
-
-        <p>Node.js是一个基于Chrome JavaScript运行时建立的平台， 用于方便地搭建响应速度快、易于扩展的网络应用。
-          Node.js 使用事件驱动， 非阻塞I/O 模型而得以轻量和高效，非常适合在分布式设备上运行的数据密集型的实时应用。
-          Node.js 包管理器 npm <a href="https://www.npmjs.com/" target="_blank"> The nodejs package manager</a>
-        </p>
-
-      </div>
-    </div>
-
-    <hr class="guide-half-rule">
-
-    <div class="row">
-      <div class="col-sm-4">
-        <img src="images/bower.png" alt="Bower" class="img-responsive">
-
-        <h3>Web前端管理包工具 <a href="http://lesscss.org/" target="_blank">Bower</a></h3>
-
-        <p>Bower 是 twitter 推出的一款前端包（Web包通常认为由html+css+javascript构成）管理工具，基于Node.js的模块化思想，
-          把功能分散到各个模块中，让模块和模块之间存在联系，通过 Bower 来管理模块间的联系。</p>
-
-      </div>
-      <div class="col-sm-4">
-        <img src="images/grunt.svg" alt="Grunt" class="img-responsive">
-
-        <h3>JavaScript 构建工具 <a href="http://gruntjs.com/" target="_blank">Grunt</a></h3>
-
-        <p>对于需要反复重复的任务，例如压缩（minification）、编译、单元测试、linting等，自动化工具可以减轻你的劳动，简化你的工作。
-          当你在 Gruntfile 文件正确配置好了任务，任务运行器就会自动帮你或你的小组完成大部分无聊的工作。
-          <a href="http://www.gruntjs.net/" target="_blank">中文网址</a>
-        </p>
-      </div>
-      <div class="col-sm-4">
-        <img src="images/yeoman.png" alt="Yeoman" class="img-responsive">
-
-        <h3>Web应用脚手架工具 <a href="http://yeoman.io/" target="_blank">Yeoman</a></h3>
-
-        <p> Yeoman是Google的团队和外部贡献者团队合作开发的，他的目标是通过Grunt和Bower的包装为开发者创建一个易用的工作流。</p>
-
-        <p>
-          Yeoman主要有三部分组成：yo（脚手架工具）、grunt（构建工具）、bower（包管理器）。
-          这三个工具是分别独立开发的，但是需要配合使用，来实现我们高效的工作流模式。</p>
-
-      </div>
-    </div>
-
-  </div>
-</div>
-
+<% include ./views/common/main.html %>
 <% include ./views/common/footer.html %>
 
 <!-- build:js scripts/vendor-main.js -->
 <script src="./bower_components/jquery/dist/jquery.js"></script>
 <script src="./bower_components/angular/angular.js"></script>
 <script src="./bower_components/bootstrap/dist/js/bootstrap.js"></script>
-
+<!-- endbuild -->
 
 <!-- build:js({.tmp,app}) scripts/main.js -->
 <script src="./scripts/apps/app-main.js"></script>
 <script src="./scripts/controllers/controller-main.js"></script>
 <script src="./scripts/directives/directive-link-active.js"></script>
+<script src="../scripts/directives/directive-back-to-top.js"></script>
 <!-- endbuild -->
 </body>
 </html>

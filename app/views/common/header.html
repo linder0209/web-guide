@@ -18,8 +18,8 @@
         <li><a ng-href="/component" target="_blank">组件库</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <% if (locals.home) { %><li><a href="/manage">编辑指南</a></li><% } %>
-        <li><a href="/resources">学习资源</a></li>
+        <li><a ng-href="/manage">编辑指南</a></li>
+        <li<% if (locals.resources) { %> class="active"<% } %>><a ng-href="/resources" target="_blank">学习资源</a></li>
       </ul>
     </div>
     <!--/.nav-collapse -->

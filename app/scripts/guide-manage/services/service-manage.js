@@ -136,7 +136,7 @@ angular.module('webGuideApp')
         var $tempContent = $('<div style="display: none;"/>').html(content);
         if ($tempContent.find('h1,h2,h3,h4,h5,h6').length === 0) {
           $tempContent.remove();
-          return {};
+          return {catalogue: null, content: content};
         }
 
         var nodes = [];

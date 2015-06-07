@@ -38,6 +38,9 @@ body {
 .margin-bottom-sm {
   margin-bottom: 5px;
 }
+.margin-bottom-vl {
+  margin-bottom: 30px;
+}
 /**
  * 页面头部样式
 **/

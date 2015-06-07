@@ -38,6 +38,9 @@ body {
 .margin-bottom-sm {
   margin-bottom: 5px;
 }
+.margin-bottom-vl {
+  margin-bottom: 30px;
+}
 /**
  * 页面头部样式
 **/
@@ -509,7 +512,7 @@ body {
   content: counter(catalogue1, decimal) "." counter(catalogue2, decimal) "." counter(catalogue3, decimal) "." counter(catalogue4, decimal) "." counter(catalogue5, decimal) "." counter(catalogue6, decimal) ". ";
   counter-increment: catalogue6;
 }
-a.back-to-top {
+.back-to-top {
   text-indent: -999em;
   position: fixed;
   bottom: 20px;
@@ -520,10 +523,10 @@ a.back-to-top {
   padding: 10px 18px;
   display: none;
 }
-a.back-to-top:after,
-a.back-to-top:before {
-  font-family: "FontAwesome";
-  content: "\f062";
+.back-to-top:after,
+.back-to-top:before {
+  font-family: "Glyphicons Halflings";
+  content: "\e093";
   text-indent: 0;
   position: absolute;
   top: 0;
@@ -534,21 +537,26 @@ a.back-to-top:before {
   -o-transition: all ease 0.238s;
   transition: all ease 0.238s;
 }
-a.back-to-top:before {
+.back-to-top:before {
   -webkit-transform: translateY(3em);
   -moz-transform: translateY(3em);
   -o-transform: translateY(3em);
   transform: translateY(3em);
 }
-a.back-to-top:hover:after {
+.back-to-top:hover:after {
   -webkit-transform: translateY(-3em);
   -moz-transform: translateY(-3em);
   -o-transform: translateY(-3em);
   transform: translateY(-3em);
 }
-a.back-to-top:hover:before {
+.back-to-top:hover:before {
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
   -o-transform: translateY(0);
   transform: translateY(0);
+}
+.resource-list .resource-item .resource-panel > a {
+  float: left;
+  padding: 5px 0;
+  margin-right: 20px;
 }
