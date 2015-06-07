@@ -9,10 +9,7 @@
 
   <link rel="icon" href="./images/favicon.png" type="image/x-icon" />
 
-  <link rel="stylesheet" href="./components/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="./components/SyntaxHighlighter/styles/shCore.css">
-  <link rel="stylesheet" href="./components/SyntaxHighlighter/styles/shCoreMidnight.css">
-  <link rel="stylesheet" href="./styles/guide.css">
+  <link rel="stylesheet" href="./styles/docs.min.css">
 
 </head>
 <body>
@@ -30,14 +27,14 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav" link-active="active">
-        <li class="<%=html%>"><a href="./html.html">HTML 代码规范</a></li>
-        <li class="<%=css%>"><a href="./css.html">CSS 代码规范</a></li>
-        <li class="<%=javascript%>"><a href="./javascript.html">JavaScript 代码规范</a></li>
-        <li class=""><a href="./performance.html">性能优化</a></li>
+        <li class=""><a href="./html.html">HTML 代码规范</a></li>
+        <li class=""><a href="./css.html">CSS 代码规范</a></li>
+        <li class=""><a href="./javascript.html">JavaScript 代码规范</a></li>
+        <li class="active"><a href="./performance.html">性能优化</a></li>
         <li><a href="./component.html">组件库</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="./resources.html">学习资源</a></li>
+        <li class=""><a href="./resources.html">学习资源</a></li>
       </ul>
     </div>
     <!--/.nav-collapse -->
@@ -84,7 +81,7 @@
               <a href="http://gruntjs.com/" target="_blank">Grunt</a>
               <a href="http://bower.io/" target="_blank">Bower</a>
               <a href="http://yeoman.io/" target="_blank">Yeoman</a>
-              <a href="/reference" target="_blank">更多</a>
+              <a href="./resources.html" target="_blank">更多</a>
             </li>
           </ul>
 
@@ -117,16 +114,9 @@
   </div>
 </footer>
 
-<script src="./components/jquery/dist/jquery.js"></script>
-<script src="./components/bootstrap/dist/js/bootstrap.js"></script>
+<a class="back-to-top btn btn-primary" title="返回顶部">返回顶部</a>
 
-<script src="./components/SyntaxHighlighter/scripts/XRegExp.js"></script>
-<script src="./components/SyntaxHighlighter/scripts/shCore.js"></script>
-<script src="./components/SyntaxHighlighter/scripts/shAutoloader.js"></script>
-<script src="./components/SyntaxHighlighter/scripts/shBrushXml.js"></script>
-
-<script src="./scripts/scroll-spy.js"></script>
-<script src="./scripts/guide.js"></script>
+<script src="./scripts/docs.min.js"></script>
 
 </body>
 </html>
