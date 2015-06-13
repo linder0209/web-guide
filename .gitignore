@@ -3,3 +3,4 @@ node_modules
 dist
 .idea
 app/bower_components
+jshint.log
