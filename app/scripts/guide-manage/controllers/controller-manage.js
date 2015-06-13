@@ -66,6 +66,7 @@ angular.module('webGuideApp').controller('WebGuideManageCtrl',
           $modal.open({
             templateUrl: '../views/templates/alert-modal.html',
             controller: 'AlertModalCtrl',
+            size: 'sm',
             resolve: {
               config: function () {
                 return {
