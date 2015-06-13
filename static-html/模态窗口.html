@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>模态窗口 modal 例子</title>
+  <meta name="description" content="">
+  <!-- 兼容性问题，使用浏览器最高版本来渲染-->
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="../app/bower_components/bootstrap/dist/css/bootstrap.css">
+</head>
+<body ng-app="ui.bootstrap.demo">
+
+<div ng-controller="ModalDemoCtrl">
+  <script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+      <h3 class="modal-title">I'm a modal!</h3>
+    </div>
+    <div class="modal-body">
+      <ul>
+        <li ng-repeat="item in items">
+          <a ng-click="selected.item = item">{{ item }}</a>
+        </li>
+      </ul>
+      Selected: <b>{{ selected.item }}</b>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="ok()">OK</button>
+      <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+  </script>
+
+  <button class="btn btn-default" ng-click="open()">Open me!</button>
+  <button class="btn btn-default" ng-click="open('lg')">Large modal</button>
+  <button class="btn btn-default" ng-click="open('sm')">Small modal</button>
+  <button class="btn btn-default" ng-click="toggleAnimation()">Toggle Animation ({{ animationsEnabled }})</button>
+  <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+</div>
+
+<script src="../app/bower_components/jquery/dist/jquery.js"></script>
+<script src="../app/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../app/bower_components/angular/angular.js"></script>
+<script src="../app/bower_components/angular-animate/angular-animate.js"></script>
+<script src="../app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script>
+  //在1.4.0中加入动画后，关闭模态窗口不能完全关闭
+  angular.module('ui.bootstrap.demo', [ 'ui.bootstrap','ngAnimate']);
+  angular.module('ui.bootstrap.demo').controller('ModalDemoCtrl', function ($scope, $modal, $log) {
+
+    $scope.items = ['item1', 'item2', 'item3'];
+
+    $scope.animationsEnabled = true;
+
+    $scope.open = function (size) {
+
+      var modalInstance = $modal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'myModalContent.html',
+        controller: 'ModalInstanceCtrl',
+        size: size,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+
+    $scope.toggleAnimation = function () {
+      $scope.animationsEnabled = !$scope.animationsEnabled;
+    };
+
+  });
+
+  // Please note that $modalInstance represents a modal window (instance) dependency.
+  // It is not the same as the $modal service used above.
+
+  angular.module('ui.bootstrap.demo').controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
+
+    $scope.items = items;
+    $scope.selected = {
+      item: $scope.items[0]
+    };
+
+    $scope.ok = function () {
+      $modalInstance.close($scope.selected.item);
+    };
+
+    $scope.cancel = function () {
+      $modalInstance.dismiss('cancel');
+    };
+  });
+
+</script>
+</body>
+</html>

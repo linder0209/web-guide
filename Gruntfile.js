@@ -54,10 +54,10 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'karma']
       },
-      styles: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
+      /*styles: {
+        files: ['<%= yeoman.app %>/styles/{,*!/}*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
-      },
+      },*/
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -428,9 +428,9 @@ module.exports = function (grunt) {
           src: ['jquery/dist/*.*','bootstrap/dist/**/*.*','SyntaxHighlighter/{scripts,styles}/*.*']
         },{
           expand: true,
-          cwd: '<%= yeoman.docs %>/templates',
+          cwd: '<%= yeoman.docs %>/templates/scripts',
           dest: '<%= yeoman.docs %>/dist/scripts',
-          src: ['guide.js', 'scroll-spy.js', 'back-to-top.js']
+          src: '*.js'
         },{
           expand: true,
           cwd: '<%= yeoman.app %>/styles',

@@ -1,0 +1,24 @@
+<div class="container-fluid" ng-controller="WebGuideManageCtrl">
+
+  <div class="row">
+
+    <div class="col-sm-2 col-md-1 sidebar">
+      <ul class="nav nav-sidebar">
+        <li class="active"><a href="" guide-docs="html" ng-click="switchTo('html',$event)">HTML 代码规范</a></li>
+        <li><a href="" guide-docs="css" ng-click="switchTo('css',$event)">CSS 代码规范</a></li>
+        <li><a href="" guide-docs="javascript" ng-click="switchTo('javascript',$event)">JavaScript 代码规范</a></li>
+        <li><a href="" guide-docs="performance" ng-click="switchTo('performance',$event)">性能优化</a></li>
+        <li><a href="" guide-docs="component" ng-click="switchTo('component',$event)">组件库</a></li>
+      </ul>
+    </div>
+
+    <div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 guide-manage-main">
+      <textarea id="content" name="content" ui-tinymce="tinymceOptions"  ng-model="guide.content" class="sr-only"></textarea>
+    </div>
+  </div>
+  <!-- /.row -->
+  <div class="guide-btn-fixed">
+    <button class="btn btn-primary" ng-click="saveGuide();">保存</button>
+  </div>
+</div>
+<!-- /.container -->
