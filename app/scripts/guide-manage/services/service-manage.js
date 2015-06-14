@@ -113,18 +113,18 @@ angular.module('webGuideApp')
             var prefix = 'catalog-';
             var html = '';
             if (nodes && nodes.length > 0) {
-              html = '<ul class="nav">';
+              html = '<ul class="nav">\n';
               for (var i = 0, len = nodes.length; i < len; i++) {
                 var node = nodes[i];
                 var target = parentTarget + i;
                 $(node.el).attr('data-target', prefix + target);
-                html += '<li>';
-                html += '<a href="javascript:void(0)" data-target="' + prefix + target + '">' + node.text + '</a>';
+                html += '  <li>\n';
+                html += '    <a href="javascript:void(0)" data-target="' + prefix + target + '">' + node.text + '</a>\n';
                 if (node.children && node.children.length > 0) {
                   html += this.generateCatalogHtml(node.children, target + '-');
                 }
 
-                html += '</li>';
+                html += '  </li>\n';
               }
               html += '</ul>';
             }

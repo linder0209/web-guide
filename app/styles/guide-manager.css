@@ -41,6 +41,9 @@ body {
 .margin-bottom-vl {
   margin-bottom: 30px;
 }
+.pos-static {
+  position: static;
+}
 /**
  * 页面头部样式
 **/
@@ -232,6 +235,7 @@ body {
   top: 90px;
   right: 50px;
   opacity: 0.3;
+  z-index: 1050;
 }
 .guide-btn-fixed:hover {
   top: 70px;
@@ -241,12 +245,12 @@ body {
   border-radius: 50%;
   opacity: 1;
 }
-/** ���������� ��ʽ**/
+/** 第三方组件 样式**/
 /**
- * ���� TinyMCE ��ͻ
+ * 解决 TinyMCE 冲突
 **/
 div.mce-fullscreen {
-  z-index: 2000;
+  z-index: 1040;
 }
 /**
  * ajax loading

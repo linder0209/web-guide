@@ -41,6 +41,9 @@ body {
 .margin-bottom-vl {
   margin-bottom: 30px;
 }
+.pos-static {
+  position: static;
+}
 /**
  * 页面头部样式
 **/
@@ -175,11 +178,11 @@ body {
 .manage-footer-assist {
   padding-top: 30px;
 }
-/** ���������� ��ʽ**/
+/** 第三方组件 样式**/
 .syntaxhighlighter {
   padding: 10px 0;
 }
-/** ������Bootstrap��ͻ**/
+/** 解决与Bootstrap冲突**/
 .syntaxhighlighter table td.code .container:before {
   display: none;
 }

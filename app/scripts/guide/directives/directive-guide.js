@@ -17,16 +17,20 @@ angular.module('webGuideApp')
             $catalogue.addClass('sr-only');
             $catalogue.find('.nav').show();
           }
-          //TODO 待完成，当滑到最下面时处理
-          /*if(scrollTop + 500 > document.documentElement.scrollHeight){
+          //当滑到最下面时处理
+          if(scrollTop + 500 > document.documentElement.scrollHeight){
             $catalogue.css({
-              position: 'absolute'
-            });
+              position: 'absolute',
+              bottom: '-100px',
+              top: 'auto'
+            }).parent().addClass('pos-static');
           }else{
             $catalogue.css({
-              position: 'fixed'
-            });
-          }*/
+              position: 'fixed',
+              bottom: 'auto',
+              top: '60px'
+            }).parent().removeClass('pos-static');
+          }
         });
 
         //点击栏目图标事件

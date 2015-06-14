@@ -12,16 +12,20 @@ $(function () {
       $catalogue.addClass('sr-only');
       $catalogue.find('.nav').show();
     }
-    //TODO 待完成，当滑到最下面时处理
-    /*if(scrollTop + 500 > document.documentElement.scrollHeight){
-     $catalogue.css({
-     position: 'absolute'
-     });
-     }else{
-     $catalogue.css({
-     position: 'fixed'
-     });
-     }*/
+    //当滑到最下面时处理
+    if(scrollTop + 500 > document.documentElement.scrollHeight){
+      $catalogue.css({
+        position: 'absolute',
+        bottom: '-100px',
+        top: 'auto'
+      }).parent().addClass('pos-static');
+    }else{
+      $catalogue.css({
+        position: 'fixed',
+        bottom: 'auto',
+        top: '60px'
+      }).parent().removeClass('pos-static');
+    }
   });
 
   var $guide = $('#guide');

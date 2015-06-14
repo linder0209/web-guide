@@ -107,7 +107,8 @@ module.exports = function (grunt) {
         files: {
           '<%= yeoman.app %>/styles/guide.css': '<%= yeoman.app %>/less/guide.less',
           '<%= yeoman.app %>/styles/guide-manager.css': '<%= yeoman.app %>/less/guide-manager.less',
-          '<%= yeoman.app %>/styles/tinymce.css': '<%= yeoman.app %>/less/tinymce.less'
+          '<%= yeoman.app %>/styles/tinymce.css': '<%= yeoman.app %>/less/tinymce.less',
+          '<%= yeoman.app %>/styles/sh-blue-classic.css': '<%= yeoman.app %>/less/sh-blue-classic.less'
         }
       }
     },
