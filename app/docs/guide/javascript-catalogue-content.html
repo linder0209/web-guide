@@ -1,0 +1,46 @@
+<h1 data-target="catalog-0">黄金法则（Golden rule）</h1><p><span style="color: #ff0000;" data-mce-style="color: #ff0000;"><strong>不管有多少人参与同一个项目，一定要确保每一行代码都像是同一个人编写的。</strong></span></p><p><span style="color: #ff0000;" data-mce-style="color: #ff0000;"><strong>Every line of code should appear to be written by a single person, no matter the number of contributors.</strong></span></p><p><span style="line-height: 2em; text-indent: 2em;" data-mce-style="line-height: 2em; text-indent: 2em;">这就需要在一个项目中，我们永远遵循同一套编码规范。在项目开发前，制定一套行之有效的编码规范，每个项目组成员都要按这个规范来编码。</span></p><h1 data-target="catalog-1">命名规范</h1><ul><li>JavaScript 文件名使用英文小写，多个单词时，中间用下划线（_）连接，如：index.js &nbsp;web-guide.js</li><li>变量命名使用英文驼峰命名法，即开始的第一个单词小写，之后的所有单词首字母大写</li></ul><h1 data-target="catalog-2">代码风格</h1><ul><li>使用两个空格来代替制表符（tab）作为缩进，— 这是保证代码在各种环境下显示一致的唯一方式</li><li>代码行长度，推荐最长不要超过120字符（列）</li><li>始终使用分号，不依赖于隐式插入<br data-mce-bogus="1"></li><li>对于字符串，推荐使用单引号</li><li>变量声明，可以一次声明一个，也可以声明多个，中间用逗号隔开<pre class="brush: plain; toolbar: false; ">//一次声明一个
+var foo = '';  
+var bar = ''; 
+
+//一次声明多个
+var foo = "",  
+      bar = "",  
+      quux;  </pre></li><li>使用&nbsp;'use strict'; 让JavaScript运行得更快</li></ul><h1 data-target="catalog-3">JSHint 代码检测工具</h1><p><a href="http://www.jshint.com/" target="_blank" data-mce-href="http://www.jshint.com/">JSHint</a> 是用来检测javascript代码的一款开源工具，他可以发现代码错误、查找代码潜在的问题。通过定制JSHint配置文件，可以使团队按照俗称的规范来开发项目。下面给出项目中常用到的规则</p><pre class="brush: javascript; toolbar: false; ">{
+  "node": true,//基于node环境
+  "jquery": true,//基于jQuery
+  "browser": true,//基于浏览器
+  "esnext": true,//告诉JSHint用 ECMAScript 6 规范检测js代码
+  "bitwise": true,//禁用位运算符，Javascript允许位运算，但是他却没有整型，位运算符要把参与运算的数字从浮点数变为整数，并在运算后再转换回来。这样他们的效率就不如在别的语言中那么高。
+  "camelcase": true,//变量命名采用驼峰式规则
+  "curly": true,//在使用if和while等结构语句时加上{}来明确代码块。Javascript允许在if等结构语句体只有一句的情况下不加括号。不过这样做可能会让你的代码读起来有些晦涩。
+  "eqeqeq": true,//检验代码中是否都用了 === 或 !==，而不是使用 == 或 !=
+  "forin": true,//如果为true，那么，JSHint要求在for in 循环里面要用hasOwnProperty处理。 for in循环一般用来遍历一个对象的属性，这其中也包括他继承自原型链的属性， 而hasOwnProperty可以来判断一个属性是否是对象本身的属性而不是继承得来的。  <br>  "latedef": "nofunc",//在调用变量或函数时，必须确保这些变量和函数在调用之前已经声明过，也就是说声明代码必须写在调用代码的前面，而不能写在后面。可以设置nofunc值忽略函数的位置而只检查变量。
+  "noarg": true,//设为true，则不允许使用arguments.caller和arguments.callee。
+  "quotmark": "single",//字符串使用单引号
+  "undef": true,//如果变量没有定义会输出错误警告信息
+  "unused": "vars",//表示如果声明了变量，但没有使用，会提示错误警告。设为vars，表示只对变量警告，而函数中的变量不警告
+  "strict": true,//使用 'use strict';语法，strict是 ECMAScript 5定义的。他对一些js代码做了限制，比如 var o = { p: 1, p: 2 }; 会提示错误的。
+  "globals": {//设置全局变量
+    "ko": false
+  }
+}</pre><p>项目中创建&nbsp;.jshintrc 文件，并设置以上属性，下面给出去除注释的配置</p><pre class="brush: javascript; toolbar: false; ">{
+  "node": true,
+  "jquery": true,
+  "browser": true,
+  "esnext": true,
+  "bitwise": true,
+  "camelcase": true,
+  "curly": true,
+  "eqeqeq": true,
+  "forin": true,
+  "latedef": "nofunc",
+  "noarg": true,
+  "quotmark": "single",
+  "undef": true,
+  "unused": "vars",
+  "strict": true,
+  "smarttabs": true,
+  "globals": {
+    "ko": false
+  }
+}</pre><p>&nbsp;</p>
