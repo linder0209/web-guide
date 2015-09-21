@@ -34,7 +34,7 @@ grunt serve
 grunt test
 ```
 
-### 编译打包
+### 编译打包（已废弃，改成grunt docs）
 ```
 grunt build
 ```
