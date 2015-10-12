@@ -26,6 +26,8 @@ angular.module('webGuideApp').controller('WebGuideManageCtrl',
       height: document.documentElement.clientHeight - 198,
       menubar: false, //Disable all menu
       content_css: '/styles/tinymce.css',
+      code_dialog_width: Math.min(tinymce.DOM.getViewPort().w - 50, 500),
+      code_dialog_height: Math.min(tinymce.DOM.getViewPort().h - 50, 500),
       plugins: [
         'autolink link image preview hr code fullscreen table textcolor charmap syntaxhighlighter'
       ],

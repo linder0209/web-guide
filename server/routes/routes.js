@@ -8,14 +8,15 @@ var main = require('./main');
 var webGuide = require('./web-guide');
 var webGuideManage = require('./web-guide-manage');
 var resources = require('./resources');
+var component = require('./component');
 
 
 router.get('/', function (req, res) {
-  res.render('web-guide', { title: 'Web Guild 首页' });
+  res.render('web-guide', { title: 'Web Guild 棣栭〉' });
 });
 /**
- * 页面相关路由抽象实现，即访问页面的url
- * 该实现把所有路由的接口都封装到该文件中
+ * 椤甸潰鐩稿叧璺敱鎶借薄瀹炵幇锛屽嵆璁块棶椤甸潰鐨剈rl
+ * 璇ュ疄鐜版妸鎵�鏈夎矾鐢辩殑鎺ュ彛閮藉皝瑁呭埌璇ユ枃浠朵腑
  * @example
  app.use('/', index);
  app.use('/example-grid', grid);
@@ -31,4 +32,5 @@ module.exports = function (app) {
   app.use('/manage', webGuideManage);
   app.use('/resources', resources);
   app.use('/examples', examples);
+  app.use('/component',component);
 };
