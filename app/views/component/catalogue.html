@@ -1,4 +1,4 @@
-<h3 class="page-header">组件库目录</h3>
+<h3 class="page-header">组件库目录管理</h3>
 
 <div class="blog-btn-group">
   <div class="btn-group">
@@ -15,7 +15,8 @@
 
   <div class="btn-group blog-search-text">
     <div class="input-group has-success">
-      <input type="text" placeholder="搜索组件库目录" class="form-control" ng-model="filterObject.searchContent" />
+      <input type="text" placeholder="搜索组件库目录" class="form-control" ng-model="filterObject.searchContent"
+             ng-change="search();"/>
           <span class="input-group-btn">
             <button class="btn btn-primary" type="button" ng-click="search();">
               <span class="glyphicon glyphicon-search"></span>
@@ -40,9 +41,9 @@
   <tr ng-repeat="item in filterObject.items" id="{{item._id}}">
     <td><input type="checkbox" ng-model="item.checked" ng-change="selectItem()"/></td>
     <td>{{item.alias | truncate:40:true}}</td>
-    <td article-count="{{item.count}}" link="/{{loginName}}#/category/{{item._id}}"></td>
+    <td>{{item.total}}</td>
     <td>
-      <a class="glyphicon glyphicon-pencil" href="" ng-click="edit(item._id);"></a>
+      <a class="glyphicon glyphicon-pencil" href="" ng-click="edit(item.id);"></a>
       <a class="glyphicon glyphicon-trash" href="" ng-click="delete(item);"></a>
     </td>
   </tr>

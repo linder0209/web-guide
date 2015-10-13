@@ -227,9 +227,6 @@ body {
   color: #ffffff;
   background-color: #5697d0;
 }
-.guide-manage-main {
-  padding: 5px;
-}
 .guide-btn-fixed {
   position: fixed;
   top: 90px;
@@ -251,6 +248,15 @@ body {
 **/
 div.mce-fullscreen {
   z-index: 1040;
+}
+.guide-manage-main .page-header {
+  margin-top: 20px;
+}
+.blog-btn-group .btn-group + .btn-group {
+  margin-left: 10px;
+}
+.blog-btn-group button + button {
+  margin-left: 10px;
 }
 /**
  * ajax loading

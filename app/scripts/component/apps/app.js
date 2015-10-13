@@ -9,12 +9,12 @@ angular.module('webGuideApp', ['ngRoute', 'ngSanitize', 'ui.bootstrap'])
   .config(function ($routeProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: 'views/component/list.html',
-      controller: 'ComponentListCtrl'
-    })
-    .when('/page', {
       templateUrl: 'views/component/page.html',
       controller: 'ComponentPageCtrl'
+    })
+    .when('/catalogue', {
+      templateUrl: 'views/component/catalogue.html',
+      controller: 'ComponentCatalogueCtrl'
     })
     .otherwise({
       redirectTo: '/'

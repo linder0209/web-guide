@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "name": "name1",
+    "total": 10,
+    "child": [
+      {
+        "id": "1-1",
+        "name": "name1-1",
+        "total": 13,
+        "child": [
+        ]
+      },
+      {
+        "id": "1-2",
+        "name": "name1-2",
+        "total": 14,
+        "child": [
+          {
+            "id": "1-2-1",
+            "name": "name1-2-1",
+            "total": 14,
+            "child": [
+            ]
+          },
+          {
+            "id": "1-2-1",
+            "name": "name1-2-1",
+            "total": 14,
+            "child": [
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "name": "name2",
+    "total": 20
+  }
+]
