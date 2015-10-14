@@ -281,7 +281,7 @@ angular.module('webGuideApp').controller('ComponentPageCtrl',
           if (item) {//修改
             angular.extend(item, $scope.catalogue);
           }else{
-            
+
           }
           //$scope.items.push(item);
         }
