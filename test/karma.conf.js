@@ -26,6 +26,7 @@ module.exports = function(config) {
       'app/bower_components/angular/angular.js',
       'app/bower_components/bootstrap/dist/js/bootstrap.js',
       'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'app/bower_components/jquery-validation/dist/jquery.validate.js',
       'app/bower_components/tinymce/tinymce.min.js',
       'app/bower_components/tinymce-dist/tinymce.min.js',
       'app/bower_components/angular-ui-tinymce/src/tinymce.js',

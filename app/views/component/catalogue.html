@@ -33,6 +33,7 @@
   <tr>
     <th><input type="checkbox" ng-model="grid.checked" ng-change="selectAll()"/></th>
     <th>目录名称</th>
+    <th>目录 Code</th>
     <th>组件数量</th>
     <th>&nbsp;</th>
   </tr>
@@ -41,6 +42,7 @@
   <tr ng-repeat="item in filterObject.items" id="{{item._id}}">
     <td><input type="checkbox" ng-model="item.checked" ng-change="selectItem()"/></td>
     <td>{{item.alias | truncate:40:true}}</td>
+    <td>{{item.code}}</td>
     <td>{{item.total}}</td>
     <td>
       <a class="glyphicon glyphicon-pencil" href="" ng-click="edit(item.id);"></a>
@@ -51,7 +53,7 @@
 </table>
 
 <script type="text/ng-template" id="catalogueForm.html">
-  <form class="form-horizontal" name="catalogueForm">
+  <form class="form-horizontal" name="catalogueForm" catalogue-validator="validator">
     <div class="modal-header">
       <button type="button" class="close" ng-click="cancel()" title="关闭">&times;</button>
       <h4 class="modal-title">{{dialogTitle}}</h4>
@@ -63,6 +65,14 @@
         <div class="col-sm-8">
           <input type="text" class="form-control" id="name" name="name" ng-model="catalogue.name"
                  required maxbyteslength="200" maxlength="200" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">目录 Code</label>
+
+        <div class="col-sm-8">
+          <input type="text" class="form-control" id="code" name="name" ng-model="catalogue.code"
+                 required maxbyteslength="50" maxlength="50" />
         </div>
       </div>
       <div class="form-group">

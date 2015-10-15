@@ -32,6 +32,20 @@ function traverse(items, list, level) {
   });
 }
 
+function findItemById(items, id) {
+  var ids = id.split('-');
+  var _items = items;
+  ids.forEach(function (id) {
+    for (var i = 0, len = _items.length;i<len;i++) {
+      if(_items[i].id === id){
+        _items = _items[i].child;
+        break;
+      }
+    }
+  });
+  return _items;
+}
+
 var component = {
   index: function (req, res) {
     res.render('component/index', {title: '组件库管理'});
@@ -71,7 +85,34 @@ var component = {
         });
       }
     });
+  },
 
+  saveCatalogue: function (req, res) {
+    var catalogue = req.body;
+    fs.readFile('./server/catalogue.json', 'utf8', function (err, data) {
+      if (err) {
+        res.send({
+          success: false
+        });
+      } else {
+        var id = catalogue.id;
+        if (id) {//修改
+
+        } else {
+          var parentId = catalogue.parentId;
+          var items = JSON.parse(data || '[]');
+
+        }
+        var list = [];
+        var items = JSON.parse(data);
+        traverse(items, list, 0);
+
+        res.send({
+          success: true,
+          items: list
+        });
+      }
+    });
   },
 
   componentType: function (req, res) {
@@ -83,6 +124,7 @@ var component = {
 router.get('/', component.index);
 router.get('/pagelist', component.pageList);
 router.get('/cataloguelist', component.catalogueList);
+router.post('/catalogue', component.saveCatalogue);
 
 //router.get('/:componentType', component.componentType);
 

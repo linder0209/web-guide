@@ -8,7 +8,10 @@ angular.module('webGuideApp')
       },
       catalogueList: function (success) {
         guideHttpService.get('component/cataloguelist').then(success);
-      }
+      },
+      saveCatalogue: function (data, success) {
+        guideHttpService.post('component/catalogue', data).then(success);
+      },
     };
   }])
   .factory('catalogueMethod', function () {
@@ -18,7 +21,7 @@ angular.module('webGuideApp')
         $modal.open({
           backdrop: 'static',// 设置为 static 表示当鼠标点击页面其他地方，modal不会关闭
           //keyboard: false,// 设为false，按 esc键不会关闭 modal
-          templateUrl: 'catalogue.html',
+          templateUrl: 'catalogueForm.html',
           controller: 'CatalogueFormModalCtrl',
           size: 'lg',
           resolve: {// 传递数据

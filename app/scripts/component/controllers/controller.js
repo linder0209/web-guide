@@ -7,7 +7,7 @@
  * */
 
 angular.module('webGuideApp').controller('ComponentPageCtrl',
-  function ($scope, $location, $modal, componentService) {
+  function ($scope, $location, $uibModal, componentService) {
 
     //初始化记录
     $scope.items = [];
@@ -58,7 +58,7 @@ angular.module('webGuideApp').controller('ComponentPageCtrl',
       var json;
       if (!item) {//没有传参数，表示执行的是删除多条记录
         if ($scope.grid.checked === false) {
-          $modal.open({
+          $uibModal.open({
             templateUrl: '../views/templates/alert-modal.html',
             controller: 'AlertModalCtrl',
             resolve: {
@@ -81,7 +81,7 @@ angular.module('webGuideApp').controller('ComponentPageCtrl',
       } else {
         json = {params: {ids: [item._id]}};
       }
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         backdrop: 'static',
         templateUrl: '../views/templates/confirm-modal.html',
         controller: 'ConfirmModalCtrl',
@@ -123,7 +123,7 @@ angular.module('webGuideApp').controller('ComponentPageCtrl',
     };
 
   })
-  .controller('ComponentCatalogueCtrl', function ($scope, $location, $modal, $filter, componentService, catalogueMethod) {
+  .controller('ComponentCatalogueCtrl', function ($scope, $location, $uibModal, $filter, componentService, catalogueMethod) {
     /**
      * 列表数据
      * @type {Array}
@@ -166,12 +166,12 @@ angular.module('webGuideApp').controller('ComponentPageCtrl',
      * 创建新的记录
      */
     $scope.create = function () {
-      catalogueMethod.openFormModal($modal, $scope);
+      catalogueMethod.openFormModal($uibModal, $scope);
     };
 
     $scope.edit = function (id) {
       componentService.editCatalogue(id, function (data) {
-        catalogueMethod.openFormModal($modal, $scope, data.item);
+        catalogueMethod.openFormModal($uibModal, $scope, data.item);
       });
     };
 
@@ -183,7 +183,7 @@ angular.module('webGuideApp').controller('ComponentPageCtrl',
       var json;
       if (!item) {//没有传参数，表示执行的是删除多条记录
         if ($scope.grid.checked === false) {
-          $modal.open({
+          $uibModal.open({
             templateUrl: '../views/templates/alert-modal.html',
             controller: 'AlertModalCtrl',
             resolve: {
@@ -213,7 +213,7 @@ angular.module('webGuideApp').controller('ComponentPageCtrl',
           }
         };
       }
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         backdrop: 'static',
         templateUrl: '../views/templates/confirm-modal.html',
         controller: 'ConfirmModalCtrl',
@@ -261,22 +261,26 @@ angular.module('webGuideApp').controller('ComponentPageCtrl',
     $scope.dialogTitle = '添加目录';
     $scope.catalogue = {
       id: undefined,
-      name: '',
-      description: ''
+      parentId: undefined,
+      name: undefined,
+      code: undefined,
+      description: undefined
     };
 
     var item = formData.item;
     if (item) {
       $scope.catalogue = {
         id: item.id,
+        parentId: item.parentId,
         name: item.name,
+        code: item.code,
         description: item.description
       };
       $scope.dialogTitle = '修改目录';
     }
 
     $scope.save = function () {
-      componentService.save($scope.catalogue, function (data) {
+      componentService.saveCatalogue($scope.catalogue, function (data) {
         if (data.success === true) {
           if (item) {//修改
             angular.extend(item, $scope.catalogue);
