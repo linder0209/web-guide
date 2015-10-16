@@ -4,6 +4,8 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var DataPage = require('../utils/DataPage');
+var Uuid = require('../utils/Uuid');
+var underscore = require('underscore');
 var config = require('../config');
 
 function joinStr(count, str) {
@@ -32,18 +34,29 @@ function traverse(items, list, level) {
   });
 }
 
+//根据id找到所在节点
 function findItemById(items, id) {
-  var ids = id.split('-');
-  var _items = items;
-  ids.forEach(function (id) {
-    for (var i = 0, len = _items.length;i<len;i++) {
-      if(_items[i].id === id){
-        _items = _items[i].child;
+  var map = items.map,
+    list = items.list,
+    findItem;
+  var layer = [id];
+  var parentId = map[id].parentId;
+  while (parentId) {
+    layer.unshift(parentId);
+    parentId = map[parentId].parentId;
+  }
+
+  layer.forEach(function (item) {
+    var len = list.length;
+    for (var i = 0; i < len; i++) {
+      if (list[i] === item) {
+        findItem = list[i];
+        list = list[i].child;
         break;
       }
     }
   });
-  return _items;
+  return findItem;
 }
 
 var component = {
@@ -76,7 +89,7 @@ var component = {
       } else {
 
         var list = [];
-        var items = JSON.parse(data);
+        var items = JSON.parse(data || '{"list":[],"map":{}}');
         traverse(items, list, 0);
 
         res.send({
@@ -95,21 +108,31 @@ var component = {
           success: false
         });
       } else {
+        var items = JSON.parse(data || '{"list":[],"map":{}}');
         var id = catalogue.id;
         if (id) {//修改
-
+          var map = items.map;
+          var item = findItemById(items, id);
+          underscore.extend(item, catalogue);
+          underscore.extend(map[id], catalogue);
         } else {
           var parentId = catalogue.parentId;
-          var items = JSON.parse(data || '[]');
-
+          var uuid = Uuid.raw();
+          catalogue.id = uuid;
+          if (parentId) {
+            items.list[parentId].child = items.list[parentId].child || [];
+            items.list[parentId].child.push(catalogue);
+          } else {
+            items.list.push(catalogue);
+          }
+          items.map[uuid] = catalogue;
         }
-        var list = [];
-        var items = JSON.parse(data);
-        traverse(items, list, 0);
 
-        res.send({
-          success: true,
-          items: list
+        //重新写入
+        fs.write('./server/catalogue.json', JSON.stringify(items), function (err, written, string) {
+          res.send({
+            success: err === null
+          });
         });
       }
     });
