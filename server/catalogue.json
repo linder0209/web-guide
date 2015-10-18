@@ -1,0 +1,92 @@
+{
+  "list": [
+    {
+      "name": "q",
+      "code": "q",
+      "description": "qqqqqq",
+      "id": "4174f31c30095cc067b7b426e8dc6817"
+    },
+    {
+      "name": "w",
+      "code": "w",
+      "description": "eeeeejjhjh",
+      "parentCategory": null,
+      "id": "818bbdb8f8b3031bfc06ef6e3a99459d"
+    },
+    {
+      "name": "3",
+      "code": "rr",
+      "description": "rtrtrrt",
+      "id": "03f1bdaf5c4744b10371737454caca8f"
+    },
+    {
+      "name": "rt",
+      "code": "tttt",
+      "description": "dffddf",
+      "parentCategory": {
+        "id": "4174f31c30095cc067b7b426e8dc6817",
+        "name": "q",
+        "code": "q",
+        "alias": "q"
+      },
+      "id": "3ac556606d6b5dbd1350462aa75c24d5"
+    },
+    {
+      "name": "ggg",
+      "code": "gggg",
+      "description": "ggggg",
+      "parentCategory": {
+        "id": "4174f31c30095cc067b7b426e8dc6817",
+        "name": "q",
+        "code": "q",
+        "alias": "q"
+      },
+      "id": "3f910070e19ddf94c7a93e20a8ae1fdb"
+    }
+  ],
+  "map": {
+    "4174f31c30095cc067b7b426e8dc6817": {
+      "name": "q",
+      "code": "q",
+      "description": "qqqqqq",
+      "id": "4174f31c30095cc067b7b426e8dc6817"
+    },
+    "818bbdb8f8b3031bfc06ef6e3a99459d": {
+      "name": "w",
+      "code": "w",
+      "description": "eeeeejjhjh",
+      "parentCategory": null,
+      "id": "818bbdb8f8b3031bfc06ef6e3a99459d"
+    },
+    "03f1bdaf5c4744b10371737454caca8f": {
+      "name": "3",
+      "code": "rr",
+      "description": "rtrtrrt",
+      "id": "03f1bdaf5c4744b10371737454caca8f"
+    },
+    "3ac556606d6b5dbd1350462aa75c24d5": {
+      "name": "rt",
+      "code": "tttt",
+      "description": "dffddf",
+      "parentCategory": {
+        "id": "4174f31c30095cc067b7b426e8dc6817",
+        "name": "q",
+        "code": "q",
+        "alias": "q"
+      },
+      "id": "3ac556606d6b5dbd1350462aa75c24d5"
+    },
+    "3f910070e19ddf94c7a93e20a8ae1fdb": {
+      "name": "ggg",
+      "code": "gggg",
+      "description": "ggggg",
+      "parentCategory": {
+        "id": "4174f31c30095cc067b7b426e8dc6817",
+        "name": "q",
+        "code": "q",
+        "alias": "q"
+      },
+      "id": "3f910070e19ddf94c7a93e20a8ae1fdb"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 <h3 class="page-header">组件库目录管理</h3>
 
-<div class="blog-btn-group">
+<div class="guide-btn-group">
   <div class="btn-group">
     <button type="button" class="btn btn-primary" ng-click="delete();">
       <span class="glyphicon glyphicon-remove"></span> 删除目录
@@ -13,7 +13,7 @@
     </button>
   </div>
 
-  <div class="btn-group blog-search-text">
+  <div class="btn-group guide-search-text">
     <div class="input-group has-success">
       <input type="text" placeholder="搜索组件库目录" class="form-control" ng-model="filterObject.searchContent"
              ng-change="search();"/>
@@ -79,7 +79,7 @@
         <label for="parent" class="col-sm-2 control-label">父级目录</label>
 
         <div class="col-sm-8">
-          <select id="parent" name="parent" class="form-control" ng-model="catalogue.parentCategory" ng-options="c.alias for c in items"
+          <select id="parent" name="parent" class="form-control" ng-model="catalogue.parentId" ng-options="c.id as c.alias for c in items"
                   ng-change="validateName()">
             <option value="">无</option>
           </select>

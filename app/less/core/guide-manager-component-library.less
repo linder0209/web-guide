@@ -5,11 +5,37 @@
   }
 }
 
-.blog-btn-group {
+.guide-btn-group {
   .btn-group + .btn-group {
     margin-left: @margin-md;
   }
   button + button {
     margin-left: @margin-md;
+  }
+}
+
+.guide-search-text {
+  margin-left: 0 !important;
+  margin-top: 5px;
+  width: 90%;
+}
+
+@media (min-width: 420px) {
+  .guide-search-text {
+    margin-left: 10px !important;
+    margin-top: 0;
+    width: 50%;
+  }
+}
+
+@media (min-width: 992px) {
+  .guide-search-text {
+    width: 40%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .guide-search-text {
+    width: 30%;
   }
 }

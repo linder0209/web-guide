@@ -21,16 +21,19 @@ function joinStr(count, str) {
 //遍历目录节点
 function traverse(items, list, level) {
   if (!items || items.length === 0) {
-    return list;
+    return;
   }
   items.forEach(function (item) {
     list.push({
       id: item.id,
       name: item.name,
+      code: item.code,
       total: item.total,
       alias: joinStr(level, ' —') + item.name
     });
-    traverse(item.child, list, level++);
+    if (item.child && item.child.length > 0) {
+      traverse(item.child, list, level + 1);
+    }
   });
 }
 
@@ -90,7 +93,7 @@ var component = {
 
         var list = [];
         var items = JSON.parse(data || '{"list":[],"map":{}}');
-        traverse(items, list, 0);
+        traverse(items.list, list, 0);
 
         res.send({
           success: true,
@@ -102,7 +105,7 @@ var component = {
 
   saveCatalogue: function (req, res) {
     var catalogue = req.body;
-    fs.readFile('./server/catalogue.json', 'utf8', function (err, data) {
+    fs.readFile('./server/catalogue.json', 'utf-8', function (err, data) {
       if (err) {
         res.send({
           success: false
@@ -120,8 +123,9 @@ var component = {
           var uuid = Uuid.raw();
           catalogue.id = uuid;
           if (parentId) {
-            items.list[parentId].child = items.list[parentId].child || [];
-            items.list[parentId].child.push(catalogue);
+            var parentItem = findItemById(items, parentId);
+            parentItem.child = parentItem.child || [];
+            parentItem.child.push(catalogue);
           } else {
             items.list.push(catalogue);
           }
@@ -129,10 +133,26 @@ var component = {
         }
 
         //重新写入
-        fs.write('./server/catalogue.json', JSON.stringify(items), function (err, written, string) {
-          res.send({
-            success: err === null
-          });
+        fs.open('./server/catalogue.json', 'w', function (err, fd) {
+          if (err) {
+            fs.close(fd, function (err) {
+            });
+            res.send({
+              success: false
+            });
+            return;
+          } else {
+            fs.write(fd, JSON.stringify(items, 4), 0, 'utf-8', function (err, written, string) {
+              fs.close(fd, function (err) {
+              });
+              var list = [];
+              traverse(items.list, list, 0);
+              res.send({
+                success: err === null,
+                items: list
+              });
+            });
+          }
         });
       }
     });

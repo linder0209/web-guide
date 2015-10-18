@@ -2,6 +2,14 @@
  * 处理一些样式的前缀
  * see Bootstrap  'less/mixins/vendor-prefixes.less'
 **/
+.has-success .form-control {
+  border-color: #428bca;
+}
+.has-success .form-control:focus {
+  border-color: #3071a9;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #92bce0;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #92bce0;
+}
 html,
 body {
   height: auto;
@@ -252,11 +260,33 @@ div.mce-fullscreen {
 .guide-manage-main .page-header {
   margin-top: 20px;
 }
-.blog-btn-group .btn-group + .btn-group {
+.guide-btn-group .btn-group + .btn-group {
   margin-left: 10px;
 }
-.blog-btn-group button + button {
+.guide-btn-group button + button {
   margin-left: 10px;
+}
+.guide-search-text {
+  margin-left: 0 !important;
+  margin-top: 5px;
+  width: 90%;
+}
+@media (min-width: 420px) {
+  .guide-search-text {
+    margin-left: 10px !important;
+    margin-top: 0;
+    width: 50%;
+  }
+}
+@media (min-width: 992px) {
+  .guide-search-text {
+    width: 40%;
+  }
+}
+@media (min-width: 1200px) {
+  .guide-search-text {
+    width: 30%;
+  }
 }
 /**
  * ajax loading
