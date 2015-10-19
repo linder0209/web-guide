@@ -12,6 +12,12 @@ angular.module('webGuideApp')
       saveCatalogue: function (data, success) {
         guideHttpService.post('component/catalogue', data).then(success);
       },
+      editCatalogue: function (id, success) {
+        guideHttpService.get('component/catalogue/' + id).then(success);
+      },
+      deleteCatalogue: function (data, success) {
+        guideHttpService.delete('component/catalogue', data).then(success);
+      }
     };
   }])
   .factory('catalogueMethod', function () {

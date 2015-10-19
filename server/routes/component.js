@@ -52,7 +52,7 @@ function findItemById(items, id) {
   layer.forEach(function (item) {
     var len = list.length;
     for (var i = 0; i < len; i++) {
-      if (list[i] === item) {
+      if (list[i].id === item) {
         findItem = list[i];
         list = list[i].child;
         break;
@@ -158,6 +158,52 @@ var component = {
     });
   },
 
+  getCatalogue: function (req, res) {
+    var id = req.params.id;
+    fs.readFile('./server/catalogue.json', 'utf8', function (err, data) {
+      if (err) {
+        res.send({
+          success: false
+        });
+      } else {
+        var items = JSON.parse(data);
+        var item = items.map[id];
+        res.send({
+          success: true,
+          item: item
+        });
+      }
+    });
+  },
+
+  deleteCatalogue: function (req, res) {
+    var items = req.query.items;// items is Array
+    if (!underscore.isArray(items)) {
+      items = [items];
+    }
+    var loginName = req.baseUrl.split('/')[1];
+    categoryDao.delete(loginName, items, function (err, docs) {
+      if (err) {
+        console.error(err);
+        res.send({success: false, err: err});
+      } else {
+        var newItems = docs.map(function (item) {
+          return {
+            _id: item._id.toString(),
+            name: item.name,
+            count: item.count,
+            parent: item.parent
+          };
+        });
+        newItems = commonMethod.setItemLevel(newItems);
+        res.send({
+          success: true,
+          items: newItems
+        });
+      }
+    });
+  },
+
   componentType: function (req, res) {
     res.locals.componentType = req.params.componentType;
     res.render('component/index', {title: '组件库'});
@@ -168,6 +214,8 @@ router.get('/', component.index);
 router.get('/pagelist', component.pageList);
 router.get('/cataloguelist', component.catalogueList);
 router.post('/catalogue', component.saveCatalogue);
+router.get('/catalogue/:id', component.getCatalogue);
+router.delete('/catalogue', component.deleteCatalogue);
 
 //router.get('/:componentType', component.componentType);
 

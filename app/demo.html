@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    .layout-side {
+      float: left;
+      width: 200px;
+    }
+    .layout-main {
+      margin-left: 200px;
+    }
+    .layout-side2 {
+      position: absolute;
+      width: 200px;
+    }
+    .layout-main2 {
+      margin-left: 200px;
+    }
+  </style>
+</head>
+<body>
+<h2>方法一：</h2>
+<div style="border: 1px solid burlywood;padding: 20px;">
+  <div class="layout-side">左侧</div>
+
+  <div class="layout-main" style="border: 1px solid blue;">右侧</div>
+</div>
+<h2>方法二：</h2>
+<div style="border: 1px solid burlywood;padding: 20px;">
+  <div class="layout-side2">左侧</div>
+
+  <div class="layout-main2" style="border: 1px solid blue;">右侧</div>
+</div>
+
+<ul>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+  <li>4</li>
+  <li>5</li>
+  <li>6</li>
+</ul>
+
+<script>
+  var lis = document.getElementsByTagName('li');
+  for(var i = 0,len=lis.length;i<len;i++){
+    lis[i].onclick = (function(li){
+      alert(li.innerHTML);
+    })(lis[i]);
+  }
+
+  var ul = document.getElementsByTagName('ul');
+  ul[0].addEventListener('click',function(e){
+    console.info(e);
+    if(e.target.typeName === ''){
+
+    }
+  },false);
+
+</script>
+</body>
+</html>

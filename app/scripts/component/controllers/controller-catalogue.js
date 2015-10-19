@@ -54,7 +54,9 @@ angular.module('webGuideApp').controller('ComponentCatalogueCtrl', function ($sc
 
     $scope.edit = function (id) {
       componentService.editCatalogue(id, function (data) {
-        catalogueMethod.openFormModal($uibModal, $scope, data.item);
+        if(data.success){
+          catalogueMethod.openFormModal($uibModal, $scope, data.item);
+        }
       });
     };
 
@@ -82,7 +84,7 @@ angular.module('webGuideApp').controller('ComponentCatalogueCtrl', function ($sc
         var items = [];
         angular.forEach($scope.filterObject.items, function (item, index) {
           if (item.checked === true) {
-            items.push({_id: item._id, parent: item.parent});
+            items.push({id: item.id});
           }
         });
         json = {params: {items: items}};
@@ -90,8 +92,7 @@ angular.module('webGuideApp').controller('ComponentCatalogueCtrl', function ($sc
         json = {
           params: {
             items: {
-              _id: item._id,
-              parent: item.parent
+              id: item.id
             }
           }
         };
@@ -103,17 +104,16 @@ angular.module('webGuideApp').controller('ComponentCatalogueCtrl', function ($sc
         resolve: {
           config: function () {
             return {
-              modalContent: '确定要删除所选的记录吗？'
+              modalContent: '确定要删除所选的目录吗？同时会删除子目录！'
             };
           }
         }
       });
       modalInstance.result.then(function () {
-        categoryService.delete(json, function (data) {
+        componentService.deleteCatalogue(json, function (data) {
           if (data.success === true) {
-            var collection = categoryMethod.sortItems(data.items);
-            $scope.items = collection.items;
-            $scope.filterObject.items = angular.copy($scope.items);
+            $scope.items = data.items;
+            $scope.filterObject.items = angular.copy(data.items);
             $scope.filterObject.searchContent = '';
             $scope.grid.checked = false;
           }
@@ -128,14 +128,14 @@ angular.module('webGuideApp').controller('ComponentCatalogueCtrl', function ($sc
     };
 
     $scope.selectItem = function () {
-      var checked = false;
-      angular.forEach($scope.filterObject.items, function (item, index) {
+      var checkbox = 0;
+      var items = $scope.filterObject.items;
+      angular.forEach(items, function (item, index) {
         if (item.checked) {
-          checked = true;
-          return false;
+          checkbox ++;
         }
       });
-      $scope.grid.checked = checked;
+      $scope.grid.checked = checkbox === items.length;
     };
   })
   .controller('CatalogueFormModalCtrl', function ($scope, $modalInstance, componentService, formData, catalogueMethod) {
@@ -165,17 +165,13 @@ angular.module('webGuideApp').controller('ComponentCatalogueCtrl', function ($sc
     $scope.save = function () {
       componentService.saveCatalogue($scope.catalogue, function (data) {
         if (data.success === true) {
-          if (item) {//修改
-            angular.extend(item, $scope.catalogue);
-          }else{
-            $scope.items.length = 0;
-            $scope.filterObject.searchContent = '';
-            $scope.filterObject.items.length = 0;
-            data.items.forEach(function(item){
-              $scope.items.push(item);
-              $scope.filterObject.items.push(item);
-            });
-          }
+          $scope.items.length = 0;
+          $scope.filterObject.searchContent = '';
+          $scope.filterObject.items.length = 0;
+          data.items.forEach(function(item){
+            $scope.items.push(item);
+            $scope.filterObject.items.push(item);
+          });
         }
       });
       $modalInstance.close();
